@@ -68,7 +68,7 @@ function toolbox_setup() {
 	/**
 	 * Add support for the Aside and Gallery Post Formats
 	 */
-	add_theme_support( 'post-formats', array( 'aside', 'image', 'gallery' ) );
+	//add_theme_support( 'post-formats', array( 'aside', 'image', 'gallery' ) );
 }
 endif; // toolbox_setup
 
@@ -99,28 +99,17 @@ add_filter( 'wp_page_menu_args', 'toolbox_page_menu_args' );
  * Register widgetized area and update sidebar with default widgets
  */
 function toolbox_widgets_init() {
-	register_sidebar( array(
+	/*register_sidebar( array(
 		'name' => __( 'Sidebar 1', 'toolbox' ),
 		'id' => 'sidebar-1',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => "</aside>",
 		'before_title' => '<h1 class="widget-title">',
 		'after_title' => '</h1>',
-	) );
-
-	register_sidebar( array(
-		'name' => __( 'Sidebar 2', 'toolbox' ),
-		'id' => 'sidebar-2',
-		'description' => __( 'An optional second sidebar area', 'toolbox' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => "</aside>",
-		'before_title' => '<h1 class="widget-title">',
-		'after_title' => '</h1>',
-	) );
+	) );*/
 }
 add_action( 'init', 'toolbox_widgets_init' );
 
-if ( ! function_exists( 'toolbox_content_nav' ) ):
 /**
  * Display navigation to next/previous pages when applicable
  *
@@ -128,35 +117,41 @@ if ( ! function_exists( 'toolbox_content_nav' ) ):
  */
 function toolbox_content_nav( $nav_id ) {
 	global $wp_query;
-
+	$has_prev = $has_next = false;
+	if(is_single()){
+		$has_prev = !!get_previous_post();
+		$has_next = !!get_next_post();
+	} else if($wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) {
+		$has_prev = !!get_next_posts_link();
+		$has_next = !!get_prev_posts_link();
+	}
+	if($has_next || $has_prev) {
 	?>
-	<nav id="<?php echo $nav_id; ?>">
+	<nav class="pagination <?php echo ($has_next && $has_prev) ? 'both-directions' : ($has_next ? 'only-next' : 'only-previous') ?>" id="<?php echo $nav_id; ?>">
 		<h1 class="assistive-text section-heading"><?php _e( 'Post navigation', 'toolbox' ); ?></h1>
-
-	<?php if ( is_single() ) : // navigation links for single posts ?>
-
-		<?php previous_post_link( '<div class="nav-previous">%link</div>', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'toolbox' ) . '</span> %title' ); ?>
-		<?php next_post_link( '<div class="nav-next">%link</div>', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'toolbox' ) . '</span>' ); ?>
-
-	<?php elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) : // navigation links for home, archive, and search pages ?>
-
-		<?php if ( get_next_posts_link() ) : ?>
-		<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'toolbox' ) ); ?></div>
-		<?php endif; ?>
-
-		<?php if ( get_previous_posts_link() ) : ?>
-		<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'toolbox' ) ); ?></div>
-		<?php endif; ?>
-
-	<?php endif; ?>
-
-	</nav><!-- #<?php echo $nav_id; ?> -->
-	<?php
+		<div class="menu"><ul><?php
+		if ( is_single() ) {
+			previous_post_link( '<li class="nav-previous">%link</li>', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'toolbox' ) . '</span> %title' );
+			next_post_link( '<li class="nav-next">%link</li>', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'toolbox' ) . '</span>' );
+		} else {
+			if($has_prev) {
+				echo '<li class="nav-previous">';
+				next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'toolbox' ) );
+				echo '</li>';
+			}
+			if($has_next) {
+				echo '<li class="nav-previous">';
+				previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'toolbox' ) );
+				echo '</li>';
+			}
+		}
+	?></ul></div>
+	</nav>
+<?php
+	}
 }
-endif; // toolbox_content_nav
 
 
-if ( ! function_exists( 'toolbox_comment' ) ) :
 /**
  * Template for comments and pingbacks.
  *
@@ -169,7 +164,7 @@ if ( ! function_exists( 'toolbox_comment' ) ) :
  */
 function toolbox_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
-	switch ( $comment->comment_type ) :
+	switch ( $comment->comment_type ) {
 		case 'pingback' :
 		case 'trackback' :
 	?>
@@ -181,41 +176,31 @@ function toolbox_comment( $comment, $args, $depth ) {
 	?>
 	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 		<article id="comment-<?php comment_ID(); ?>" class="comment">
+			<div class="comment-content"><?php comment_text(); ?></div>
 			<footer>
 				<div class="comment-author vcard">
-					<?php echo get_avatar( $comment, 40 ); ?>
-					<?php printf( __( '%s <span class="says">says:</span>', 'toolbox' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
-				</div><!-- .comment-author .vcard -->
-				<?php if ( $comment->comment_approved == '0' ) : ?>
-					<em><?php _e( 'Your comment is awaiting moderation.', 'toolbox' ); ?></em>
-					<br />
-				<?php endif; ?>
-
+					<?php // echo get_avatar( $comment, 40 ); ?>
+					<?php printf( __( '<span class="implicit-text">by </span> %s', 'toolbox' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
+				</div>
 				<div class="comment-meta commentmetadata">
-					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time pubdate datetime="<?php comment_time( 'c' ); ?>">
-					<?php
-						/* translators: 1: date, 2: time */
-						printf( __( '%1$s at %2$s', 'toolbox' ), get_comment_date(), get_comment_time() ); ?>
-					</time></a>
-					<?php edit_comment_link( __( '(Edit)', 'toolbox' ), ' ' );
-					?>
-				</div><!-- .comment-meta .commentmetadata -->
+					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time pubdate datetime="<?php comment_time( 'c' ); ?>"><?php
+						printf( __( '%s ago', 'toolbox' ), human_time_diff(get_comment_time('U')) );
+					?></time></a>
+					<?php if ( $comment->comment_approved == '0' ) { ?>
+					<span class="moderation"><?php _e( 'Your comment is awaiting moderation.', 'toolbox' ); ?></span>
+					<?php } ?>
+				</div>
+				<div class="reply"><?php
+					comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) );
+					edit_comment_link( __( '(Edit)', 'toolbox' ), ' ' );
+				?></div>
 			</footer>
-
-			<div class="comment-content"><?php comment_text(); ?></div>
-
-			<div class="reply">
-				<?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-			</div><!-- .reply -->
-		</article><!-- #comment-## -->
-
+		</article>
 	<?php
 			break;
-	endswitch;
+	}
 }
-endif; // ends check for toolbox_comment()
 
-if ( ! function_exists( 'toolbox_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  * Create your own toolbox_posted_on to override in a child theme
@@ -223,6 +208,30 @@ if ( ! function_exists( 'toolbox_posted_on' ) ) :
  * @since Toolbox 1.2
  */
 function toolbox_posted_on() {
+	$y = get_the_time('Y');
+	$m = get_the_time('m');
+	$d = get_the_time('d');
+?>
+	<p class="date">
+		<span class="implicit-text"><?php echo __('Posted on', 'toolbox') ?></span>
+		<time class="entry-date" datetime="<?php echo get_the_time('c')?>" pubdate>
+			<span class="day-month">
+				<a href="<?php echo get_day_link($y,$m,$d) ?>" title="<?php echo __('Show all posts of this day', 'toolbox') ?>" class="day"><?php the_time('j.') ?></a>
+				<a href="<?php echo get_month_link($y,$m) ?>" title="<?php echo __('Show all posts of this month', 'toolbox') ?>" class="month"><?php the_time('M') ?></a>
+			</span>
+			<a href="<?php echo get_year_link($y) ?>" title="<?php echo __('Show all posts of this year', 'toolbox') ?>" class="year"><?php the_time('Y') ?></a>
+		</time>
+	</p>
+	<p class="byline">
+		<span class="implicit-text"><?php echo __('by', 'toolbox') ?></span>
+		<span class="author vcard"><a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ) ?>" title="<?php echo sprintf( __( 'View all posts by %s', 'toolbox' ), get_the_author() ) ?>" rel="author"><?php echo get_the_author() ?></a></span>
+	</p>
+<?php
+}
+/*
+function toolbox_posted_on() {?>
+	<p class="date"><span>Posted on </span>
+<?php
 	printf( __( '<span class="sep">Posted on </span><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a><span class="byline"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span></span>', 'toolbox' ),
 		esc_url( get_permalink() ),
 		esc_attr( get_the_time() ),
@@ -232,8 +241,7 @@ function toolbox_posted_on() {
 		esc_attr( sprintf( __( 'View all posts by %s', 'toolbox' ), get_the_author() ) ),
 		esc_html( get_the_author() )
 	);
-}
-endif;
+}*/
 
 /**
  * Adds custom classes to the array of body classes.
