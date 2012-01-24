@@ -49,8 +49,14 @@ a:link, a:active, a:visited {
 #content > article,
 .pagination .menu,
 #comments {
-  max-width: 80%;
+  max-width: 40em;
   margin: 0 auto;
+}
+#main {
+  margin: 0 2em;
+}
+#access, .pagination {
+  margin: 0 -2em;
 }
 #branding {
   position: fixed;
@@ -61,6 +67,8 @@ a:link, a:active, a:visited {
 #page {
   position: absolute;
   top: 20em;
+  left: 0;
+  width: 100%;
 }
 body {
   background: #64a12d url(images/sonnenblume-tiled.png) repeat fixed;
@@ -69,35 +77,48 @@ body {
   position: relative;
   height: 100%;
   color: #fff;
-  background: url(images/logo.png) no-repeat 100% 50%;
 }
 #branding hgroup a {
   text-decoration: none;
 }
 #branding hgroup h1 {
   font: normal normal 900 4em /1 'Maven Pro';
+  font-style: italic;
+  letter-spacing: -0.1ex;
   text-transform: uppercase;
+  white-space: nowrap;
   position: absolute;
   bottom: 50%;
-  line-height: 0;
-  margin-bottom: -16px;
+  line-height: 1;
+  margin-bottom: -0.5em;
+}
+#branding hgroup h1::after {
+  content: '';
+  position: absolute;
+  background: url(images/logo-blume.png) no-repeat 100% 0;
+  width: 140px;
+  height: 134px;
+  margin: -57px -97px;
+  right: 0;
+  top: 0;
 }
 #branding hgroup h2 {
   font: normal normal 400 2em /1 'Maven Pro';
   text-transform: uppercase;
   color: #bdce20;
   position: absolute;
+  white-space: nowrap;
   top: 50%;
-  line-height: 0;
-  margin-top: 2em;
+  line-height: 1;
+  margin-top: 1em;
 }
 #access {
   background-color: #bdce20;
   color: #000;
-  font: 500 90% /2.5 'Maven Pro';
 }
 #access .menu ul {
-  margin: 0 -1em;
+  font: 500 90% /2.5 'Maven Pro';
+  text-align: center;
 }
 #access .menu li {
   display: inline-block;
@@ -116,18 +137,25 @@ body {
 .pagination {
   background-color: #dee790;
   color: #000;
-  font: 500 90% /2.5 'Maven Pro';
+  /*&.only-next {
+		ul { text-align: right; }
+		.nav-next { position: static; }
+	}*/
+
 }
 .pagination .menu ul {
-  background-color: #bdce20;
   margin: 0 -1em;
   position: relative;
+  font: 500 90% /2.5 'Maven Pro';
 }
 .pagination .menu li {
-  display: inline-block;
+  height: 2.5em;
+  max-width: 50%;
 }
 .pagination .menu a {
   position: relative;
+  height: 2.5em;
+  max-width: 100%;
 }
 .pagination .menu a:link, .pagination .menu a:active, .pagination .menu a:visited {
   background-color: #bdce20;
@@ -138,44 +166,72 @@ body {
 .pagination .menu a:focus, .pagination .menu a:hover {
   background-color: #a9b81d;
 }
-.pagination .menu .nav-previous a::before {
+.pagination .menu a::before, .pagination .menu a::after {
   content: '';
   height: 0;
   width: 0;
   position: absolute;
-  border: 1.2em solid transparent;
+  border: 1.25em solid transparent;
   top: 0;
+}
+.pagination .menu a > span {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pagination .menu > .helper {
+  display: block;
+  clear: both;
+}
+.pagination .menu .nav-previous {
+  float: left;
+}
+.pagination .menu .nav-previous a {
+  padding-right: 0;
+}
+.pagination .menu .nav-previous a::before {
   right: 100%;
   border-right-color: #bdce20;
+}
+.pagination .menu .nav-previous a::after {
+  left: 100%;
+  border-color: #bdce20;
+  border-right-color: transparent;
 }
 .pagination .menu .nav-previous a:focus::before, .pagination .menu .nav-previous a:hover::before {
   border-right-color: #a9b81d;
 }
+.pagination .menu .nav-previous a:focus::after, .pagination .menu .nav-previous a:hover::after {
+  border-color: #a9b81d;
+  border-right-color: transparent;
+}
 .pagination .menu .nav-next {
-  position: absolute;
-  right: 0;
+  float: right;
+}
+.pagination .menu .nav-next a {
+  padding-left: 0;
+}
+.pagination .menu .nav-next a::before {
+  right: 100%;
+  border-color: #bdce20;
+  border-left-color: transparent;
 }
 .pagination .menu .nav-next a::after {
-  content: '';
-  height: 0;
-  width: 0;
-  position: absolute;
-  border: 1.2em solid transparent;
-  top: 0;
   left: 100%;
   border-left-color: #bdce20;
 }
 .pagination .menu .nav-next a:focus::after, .pagination .menu .nav-next a:hover::after {
   border-left-color: #a9b81d;
 }
+.pagination .menu .nav-next a:focus::before, .pagination .menu .nav-next a:hover::before {
+  border-color: #a9b81d;
+  border-left-color: transparent;
+}
 .pagination .meta-nav {
   display: none;
-}
-.pagination.only-next ul {
-  text-align: right;
-}
-.pagination.only-next .nav-next {
-  position: static;
 }
 #page {
   background: #fff;
@@ -190,30 +246,14 @@ body {
   color: #1d4d9a;
 }
 #content .post header h1 {
-  margin: 1em 0 1em 0;
+  margin: 1em 0 0 0;
   font: normal normal 2.5em /0.9 'Alegreya SC';
 }
 #content .post header .date {
   font: normal normal 1em /1 'Noticia Text';
-  text-align: right;
-  position: absolute;
-  left: -5em;
-  bottom: 0;
-  width: 4em;
-}
-#content .post header .date .day-month {
-  display: block;
-  word-spacing: -0.25ex;
-}
-#content .post header .date .day {
-  font-size: 120%;
-}
-#content .post header .date .month {
-  font-size: 80%;
-}
-#content .post header .date .year {
-  display: block;
-  font-size: 120%;
+  margin: 0.5em 0 2em;
+  padding: 0 0 0 1em;
+  color: #757575;
 }
 #content .post footer {
   margin: 2em 0 10em;
@@ -241,7 +281,7 @@ body {
   font: 500 90% /2.5 'Maven Pro';
   line-height: 1;
   font-size: 80%;
-  color: #888;
+  color: #757575;
   float: left;
 }
 #content .taxonomy a {
@@ -295,6 +335,35 @@ body {
 }
 .single-author .byline {
   display: none;
+}
+@media all and (min-width: 900px) {
+  #content .post header h1 {
+    margin-bottom: 1em;
+  }
+  #content .post header .date {
+    color: inherit;
+    text-align: right;
+    position: absolute;
+    left: -5em;
+    bottom: 0;
+    width: 4em;
+    margin: 0;
+    padding: 0;
+  }
+  #content .post header .date .day-month {
+    display: block;
+    word-spacing: -0.25ex;
+  }
+  #content .post header .date .day {
+    font-size: 120%;
+  }
+  #content .post header .date .month {
+    font-size: 80%;
+  }
+  #content .post header .date .year {
+    display: block;
+    font-size: 120%;
+  }
 }
 #comments {
   margin-top: 2em;
@@ -432,7 +501,7 @@ body {
   font-size: 80%;
 }
 #colophon {
-  color: #5c5c5c;
+  color: #757575;
   margin: 4em 0;
   text-align: center;
   font: normal normal 400 0.9em /1 'Maven Pro';

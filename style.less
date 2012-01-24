@@ -14,9 +14,13 @@ Tags:
 @green: rgb(100,161,45);
 @blue: rgb(29,77,154);
 @white: #fff;
+@gray: lighten(desaturate(@blue,100%),10%);
 
 
 @branding-height: 20em;
+
+@big-screen: 900px;
+
 
 
 @import url(reset.css);
@@ -74,8 +78,15 @@ body {
 #content > article,
 .pagination .menu,
 #comments {
-	max-width: 80%;
+	max-width: 40em;
 	margin: 0 auto;
+}
+
+#main {
+	margin: 0 2em;
+}
+#access, .pagination {
+	margin: 0 -2em;
 }
 
 #branding {
@@ -88,6 +99,8 @@ body {
 #page {
 	position: absolute;
 	top: @branding-height;
+	left: 0;
+	width: 100%;
 }
 
 // Header
@@ -99,24 +112,40 @@ body {
 		position: relative;
 		height: 100%;
 		color: #fff;
-		background: url(images/logo.png) no-repeat 100% 50%;
+		//background: url(images/logo.png) no-repeat 100% 50%;
 		a { text-decoration: none }
 		h1 {
 			font: @head1;
+			font-style: italic;
+			letter-spacing: -0.1ex;
 			text-transform: uppercase;
+			white-space: nowrap;
 			position: absolute;
 			bottom: 50%;
-			line-height: 0;
-			margin-bottom: -16px; // baseline shift ~ logo
+			line-height: 1;
+			margin-bottom: -0.5em;
+			&::after {
+				content: '';
+				position: absolute;
+				background: url(images/logo-blume.png) no-repeat 100% 0;
+				@w: 140px;
+				@h: 134px;
+				width: @w; height: @h;
+				margin: (-0.5 * @h + 10) (-0.5 * @w - 27px);
+				right: 0;
+				top: 0;
+			}
 		}
+
 		h2 {
 			font: @head2;
 			text-transform: uppercase;
 			color: @sulphur;
 			position: absolute;
+			white-space: nowrap;
 			top: 50%;
-			line-height: 0;
-			margin-top: 2em;
+			line-height: 1;
+			margin-top: 1em;
 		}
 	}
 }
@@ -128,9 +157,12 @@ body {
 	@bg: @menu-bg;
 	background-color: @bg;
 	color: #000;
-	font: @menufont;
 	.menu {
-		ul { margin: 0 -1em; }
+		ul {
+			//margin: 0 -1em;
+			font: @menufont;
+			text-align: center;
+		}
 		li {
 			display: inline-block;
 		}
@@ -161,17 +193,19 @@ body {
 	@bg: @menu-bg;
 	@hover: @menu-hover;
 	@light: mix(@bg, #fff, 50%);
+	@size: 2.5em/2;
 	background-color: @light;
 	color: #000;
-	font: @menufont;
 	.menu {
 		ul {
-			background-color: @bg;
 			margin: 0 -1em;
 			position: relative;
+			font: @menufont;
 		}
 		li {
-			display: inline-block;
+			//display: inline-block;
+			height: 2 * @size;
+			max-width: 50%;
 		}
 		a {
 			position: relative;
@@ -184,41 +218,69 @@ body {
 			&:focus, &:hover {
 				background-color: @hover;
 			}
+			&::before, &::after {
+				.arrow(@size);
+				top: 0;
+			}
+			height: 2 * @size;
+			max-width: 100%;
+			> span {
+				display: inline-block;
+				width: 100%;
+				height: 100%;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		}
+		> .helper {
+			display: block;
+			clear: both;
 		}
 		.nav-previous {
+			float: left;
 			a {
+				padding-right: 0;
 				&::before {
-					.arrow(1.2em);
-					top: 0;
 					right: 100%;
 					border-right-color: @bg;
 				}
+				&::after {
+					left: 100%;
+					border-color: @bg;
+					border-right-color: transparent;
+				}
 				&:focus, &:hover {
 					&::before { border-right-color: @hover }
+					&::after { border-color: @hover; border-right-color: transparent }
 				}
 			}
 		}
 		.nav-next {
-			position: absolute;
-			right: 0;
+			float: right;
 			a {
+				padding-left: 0;
+				&::before {
+					right: 100%;
+					border-color: @bg;
+					border-left-color: transparent;
+				}
 				&::after {
-					.arrow(1.2em);
-					top: 0;
 					left: 100%;
 					border-left-color: @bg;
 				}
 				&:focus, &:hover {
 					&::after { border-left-color: @hover }
+					&::before { border-color: @hover; border-left-color: transparent }
 				}
 			}
 		}
 	}
 	.meta-nav { display: none; }
-	&.only-next {
+	/*&.only-next {
 		ul { text-align: right; }
 		.nav-next { position: static; }
-	}
+	}*/
 }
 
 #page {
@@ -235,30 +297,14 @@ body {
 				&:focus, &:hover { color: @blue; }
 			}
 			h1 {
-				margin: 1em 0 1em 0;
+				margin: 1em 0 0 0;
 				font: @head3;
 			}
 			.date {
 				font: @datefont;
-				text-align: right;
-				position: absolute;
-				left: -5em;
-				bottom: 0;
-				width: 4em;
-				.day-month {
-					display: block;
-					word-spacing: -0.25ex;
-				}
-				.day {
-					font-size: 120%;
-				}
-				.month {
-					font-size: 80%;
-				}
-				.year {
-					display: block;
-					font-size: 120%;
-				}
+				margin: 0.5em 0 2em;
+				padding: 0 0 0 1em;
+				color: @gray;
 			}
 		}
 		footer {
@@ -272,7 +318,6 @@ body {
 	}
 	.entry-content {
 		font: @mainfont;
-
 		a {
 			&:link, &:active, &:focus {}
 			&:focus, &:hover { color: @blue; }
@@ -288,7 +333,7 @@ body {
 		font: @menufont;
 		line-height: 1;
 		font-size: 80%;
-		color: #888;
+		color: @gray;
 		float: left;
 		a {
 			text-decoration: none;
@@ -303,10 +348,7 @@ body {
 		font: @menufont;
 		line-height: 1;
 		font-size: 80%;
-		span {
-			font-size: 150%;
-			//display: block;
-		}
+		span { font-size: 150%; }
 		a {
 			display: block;
 			text-align: center;
@@ -339,6 +381,40 @@ body {
 .single-author .byline {
 	display: none;
 }
+
+// fancy date
+@media all and (min-width: @big-screen) {
+	#content .post header {
+		h1 {
+			margin-bottom: 1em;
+		}
+		.date {
+			color: inherit;
+			text-align: right;
+			position: absolute;
+			left: -5em;
+			bottom: 0;
+			width: 4em;
+			margin: 0; padding: 0;
+			.day-month {
+				display: block;
+				word-spacing: -0.25ex;
+			}
+			.day {
+				font-size: 120%;
+			}
+			.month {
+				font-size: 80%;
+			}
+			.year {
+				display: block;
+				font-size: 120%;
+			}
+		}
+	}
+}
+
+
 
 // Comments
 #comments {
@@ -480,7 +556,7 @@ body {
 
 // Footer
 #colophon {
-	color: desaturate(@blue,100%);
+	color: @gray;
 	margin: 4em 0;
 	text-align: center;
 	font: @colophonfont;
@@ -488,3 +564,7 @@ body {
 		margin: 1em 0;
 	}
 }
+
+
+
+

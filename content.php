@@ -13,9 +13,9 @@ $is_post = 'post' == get_post_type();
 		<?php } ?>
 	</header>
 	<?php if ( is_search() ) { // Only display Excerpts for Search ?>
-		<div class="entry-summary"><?php the_excerpt(); ?></div>
+		<div class="entry-summary hyphenate"><?php the_excerpt(); ?></div>
 	<?php } else { ?>
-		<div class="entry-content"><?php
+		<div class="entry-content hyphenate"><?php
 			the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'toolbox' ) );
 wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'toolbox' ), 'after' => '</div>' ) );
 		?></div>

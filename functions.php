@@ -131,21 +131,21 @@ function toolbox_content_nav( $nav_id ) {
 		<h1 class="assistive-text section-heading"><?php _e( 'Post navigation', 'toolbox' ); ?></h1>
 		<div class="menu"><ul><?php
 		if ( is_single() ) {
-			previous_post_link( '<li class="nav-previous">%link</li>', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'toolbox' ) . '</span> %title' );
-			next_post_link( '<li class="nav-next">%link</li>', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'toolbox' ) . '</span>' );
+			previous_post_link( '<li class="nav-previous">%link</li>', '<span><span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'toolbox' ) . '</span> %title</span>' );
+			next_post_link( '<li class="nav-next">%link</li>', '<span>%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'toolbox' ) . '</span></span>' );
 		} else {
 			if($has_prev) {
 				echo '<li class="nav-previous">';
-				next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'toolbox' ) );
+				next_posts_link( __( '<span><span class="meta-nav">&larr;</span> Older posts</span>', 'toolbox' ) );
 				echo '</li>';
 			}
 			if($has_next) {
 				echo '<li class="nav-previous">';
-				previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'toolbox' ) );
+				previous_posts_link( __( '<span>Newer posts <span class="meta-nav">&rarr;</span></span>', 'toolbox' ) );
 				echo '</li>';
 			}
 		}
-	?></ul></div>
+	?></ul><span class="helper" /></div>
 	</nav>
 <?php
 	}
@@ -176,7 +176,7 @@ function toolbox_comment( $comment, $args, $depth ) {
 	?>
 	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 		<article id="comment-<?php comment_ID(); ?>" class="comment">
-			<div class="comment-content"><?php comment_text(); ?></div>
+			<div class="comment-content hyphenate"><?php comment_text(); ?></div>
 			<footer>
 				<div class="comment-author vcard">
 					<?php // echo get_avatar( $comment, 40 ); ?>
