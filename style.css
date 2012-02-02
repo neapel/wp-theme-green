@@ -13,33 +13,9 @@ License URI: license.txt
 Tags: 
 */
 .screen-reader-text, .assistive-text, .implicit-text {
-  position: absolute !important;
+  position: absolute;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
-}
-.alignleft {
-  display: inline;
-  float: left;
-}
-.alignright {
-  display: inline;
-  float: right;
-}
-.aligncenter {
-  clear: both;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-img.size-auto,
-img.size-full,
-img.size-large,
-img.size-medium,
-.attachment img,
-.widget-area img,
-.wp-caption {
-  max-width: 100%;
-  height: auto;
 }
 a:link, a:active, a:visited {
   color: inherit;
@@ -73,6 +49,9 @@ a:link, a:active, a:visited {
 body {
   background: #64a12d url(images/sonnenblume-tiled.png) repeat fixed;
 }
+#branding {
+  clip: rect(0%, 100%, 100%, 0%);
+}
 #branding hgroup {
   position: relative;
   height: 100%;
@@ -91,8 +70,13 @@ body {
   bottom: 50%;
   line-height: 1;
   margin-bottom: -0.5em;
+  width: 100%;
+  text-align: center;
 }
-#branding hgroup h1::after {
+#branding hgroup h1 a {
+  position: relative;
+}
+#branding hgroup h1 a::after {
   content: '';
   position: absolute;
   background: url(images/logo-blume.png) no-repeat 100% 0;
@@ -101,6 +85,15 @@ body {
   margin: -57px -97px;
   right: 0;
   top: 0;
+}
+#branding hgroup::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: -60px;
+  background: url(images/igel.png) no-repeat 100% 100%;
+  width: 184px;
+  height: 100px;
 }
 #branding hgroup h2 {
   font: normal normal 400 2em /1 'Maven Pro';
@@ -111,22 +104,27 @@ body {
   top: 50%;
   line-height: 1;
   margin-top: 1em;
+  width: 100%;
+  text-align: center;
 }
 #access {
   background-color: #bdce20;
   color: #000;
 }
-#access .menu ul {
-  font: 500 90% /2.5 'Maven Pro';
+#access .menu > ul {
+  font: 500 90% / 2.5 'Maven Pro';
   text-align: center;
 }
 #access .menu li {
   display: inline-block;
 }
-#access .menu a:link, #access .menu a:active, #access .menu a:visited {
+#access .menu a {
   display: inline-block;
-  text-decoration: none;
   padding: 0 1em;
+  text-decoration: none;
+}
+#access .menu a:focus, #access .menu a:hover {
+  text-decoration: underline;
 }
 #access .menu a:focus, #access .menu a:hover {
   background-color: #a9b81d;
@@ -134,19 +132,46 @@ body {
 #access .menu li.current_page_item > a {
   background-color: #fff;
 }
+#access .menu li.current_page_ancestor > a {
+  background-color: #dee790;
+}
+#access .menu li.current_page_parent > a {
+  background-color: #eff3c7;
+}
+#access .menu .children {
+  display: none;
+}
+#access .menu .current_page_item .children, #access .menu .current_page_ancestor .children {
+  display: inline-block;
+}
+.page-header {
+  max-width: 40em;
+  margin: 0 auto;
+}
+.page-header h1 {
+  font: normal normal 400 1em /1.1 'Maven Pro';
+  font-weight: 400;
+  font-size: 2em;
+  margin: 1em 0;
+  text-align: center;
+}
+.page-header h1 span {
+  font-weight: 700;
+}
+.page-header h1 a {
+  text-decoration: none;
+}
+.page-header h1 a:focus, .page-header h1 a:hover {
+  text-decoration: underline;
+}
 .pagination {
   background-color: #dee790;
   color: #000;
-  /*&.only-next {
-		ul { text-align: right; }
-		.nav-next { position: static; }
-	}*/
-
 }
 .pagination .menu ul {
   margin: 0 -1em;
   position: relative;
-  font: 500 90% /2.5 'Maven Pro';
+  font: 500 90% / 2.5 'Maven Pro';
 }
 .pagination .menu li {
   height: 2.5em;
@@ -158,20 +183,16 @@ body {
   max-width: 100%;
 }
 .pagination .menu a:link, .pagination .menu a:active, .pagination .menu a:visited {
-  background-color: #bdce20;
   display: inline-block;
   text-decoration: none;
   padding: 0 1em;
-}
-.pagination .menu a:focus, .pagination .menu a:hover {
-  background-color: #a9b81d;
 }
 .pagination .menu a::before, .pagination .menu a::after {
   content: '';
   height: 0;
   width: 0;
   position: absolute;
-  border: 1.25em solid transparent;
+  border: 1.25em solid rgba(189, 206, 32, 0);
   top: 0;
 }
 .pagination .menu a > span {
@@ -191,6 +212,7 @@ body {
 }
 .pagination .menu .nav-previous a {
   padding-right: 0;
+  background-color: #bdce20;
 }
 .pagination .menu .nav-previous a::before {
   right: 100%;
@@ -199,64 +221,142 @@ body {
 .pagination .menu .nav-previous a::after {
   left: 100%;
   border-color: #bdce20;
-  border-right-color: transparent;
+  border-right-color: rgba(189, 206, 32, 0);
+}
+.pagination .menu .nav-previous a:focus, .pagination .menu .nav-previous a:hover {
+  background-color: #a9b81d;
 }
 .pagination .menu .nav-previous a:focus::before, .pagination .menu .nav-previous a:hover::before {
   border-right-color: #a9b81d;
 }
 .pagination .menu .nav-previous a:focus::after, .pagination .menu .nav-previous a:hover::after {
   border-color: #a9b81d;
-  border-right-color: transparent;
+  border-right-color: rgba(169, 184, 29, 0);
 }
 .pagination .menu .nav-next {
   float: right;
 }
 .pagination .menu .nav-next a {
   padding-left: 0;
+  background-color: #bdce20;
 }
 .pagination .menu .nav-next a::before {
   right: 100%;
   border-color: #bdce20;
-  border-left-color: transparent;
+  border-left-color: rgba(189, 206, 32, 0);
 }
 .pagination .menu .nav-next a::after {
   left: 100%;
   border-left-color: #bdce20;
+}
+.pagination .menu .nav-next a:focus, .pagination .menu .nav-next a:hover {
+  background-color: #a9b81d;
 }
 .pagination .menu .nav-next a:focus::after, .pagination .menu .nav-next a:hover::after {
   border-left-color: #a9b81d;
 }
 .pagination .menu .nav-next a:focus::before, .pagination .menu .nav-next a:hover::before {
   border-color: #a9b81d;
-  border-left-color: transparent;
+  border-left-color: rgba(169, 184, 29, 0);
 }
 .pagination .meta-nav {
   display: none;
 }
+#content .more-link {
+  display: block;
+  text-align: center;
+  font: 500 90% / 2.5 'Maven Pro';
+  text-decoration: none;
+  background-color: #f8ec5b;
+  border-radius: 0 0 1em 1em;
+  color: inherit;
+}
+#content .more-link:hover, #content .more-link:focus {
+  text-decoration: underline;
+  color: #000 !important;
+  background-color: #e7d60a;
+}
+#content .more-link .meta-nav {
+  display: none;
+}
+#content .post-pagination {
+  height: 2.5em;
+  margin: 2em 0;
+}
+#content .post-pagination .menu {
+  border-radius: 0 0 1em 1em;
+  background: #f8ec5b;
+  border-bottom: 5px solid #f8ec5b;
+  text-align: center;
+}
+#content .post-pagination .menu p, #content .post-pagination .menu li {
+  font: 500 90% / 2.5 'Maven Pro';
+}
+#content .post-pagination .menu p {
+  margin-right: 1em;
+}
+#content .post-pagination .menu * {
+  display: inline-block;
+}
+#content .post-pagination .menu a, #content .post-pagination .menu span {
+  padding: 0 1em;
+}
+#content .post-pagination .menu a {
+  text-decoration: none;
+}
+#content .post-pagination .menu a:hover, #content .post-pagination .menu a:focus {
+  background-color: #e7d60a;
+  text-decoration: underline;
+}
+#content .post-pagination .menu span {
+  background-color: #fff;
+}
 #page {
   background: #fff;
 }
-#content .post header {
-  position: relative;
+#content footer, #content .pre-footer {
+  clear: both;
 }
-#content .post header a {
+#content .post header a, #content .post footer a {
   text-decoration: none;
 }
-#content .post header a:focus, #content .post header a:hover {
-  color: #1d4d9a;
+#content .post header a:focus,
+#content .post footer a:focus,
+#content .post header a:hover,
+#content .post footer a:hover {
+  text-decoration: underline;
 }
-#content .post header h1 {
+#content .post header h1, #content .post footer h1 {
   margin: 1em 0 0 0;
-  font: normal normal 2.5em /0.9 'Alegreya SC';
+  font: normal normal 700 2.5em /1.1 'Maven Pro';
 }
-#content .post header .date {
-  font: normal normal 1em /1 'Noticia Text';
-  margin: 0.5em 0 2em;
-  padding: 0 0 0 1em;
+#content .post header h1 a, #content .post footer h1 a {
+  display: block;
+}
+#content .post header .entry-meta, #content .post footer .entry-meta {
+  font: 500 90% / 2.5 'Maven Pro';
   color: #757575;
 }
+#content .post header .entry-meta .byline .implicit-text, #content .post footer .entry-meta .byline .implicit-text {
+  position: static;
+  clip: auto;
+  font-style: italic;
+}
+#content .post header .entry-meta p, #content .post footer .entry-meta p {
+  display: inline-block;
+  margin-right: 1em;
+}
 #content .post footer {
-  margin: 2em 0 10em;
+  margin: 0 0 10em;
+}
+#content .post.format-link .entry-content a:first-child {
+  margin: 1em 0 0 0;
+  font: normal normal 700 2.5em /1.1 'Maven Pro';
+  display: block;
+  text-decoration: none;
+}
+#content .post.format-link .entry-content a:first-child:focus, #content .post.format-link .entry-content a:first-child:hover {
+  text-decoration: underline;
 }
 #content .page {
   margin-top: 2em;
@@ -265,115 +365,139 @@ body {
 #content .page header {
   display: none;
 }
-#content .entry-content {
-  font: normal normal normal 1em /1.5 'Noticia Text';
-}
-#content .entry-content a:focus, #content .entry-content a:hover {
-  color: #1d4d9a;
-}
-#content .entry-content p {
-  margin: 0.5em 0;
-}
-#content .entry-content blockquote {
-  margin: 0.5em 1em;
-}
 #content .taxonomy {
-  font: 500 90% /2.5 'Maven Pro';
-  line-height: 1;
-  font-size: 80%;
-  color: #757575;
-  float: left;
-}
-#content .taxonomy a {
-  text-decoration: none;
-}
-#content .taxonomy a:hover, #content .taxonomy a:focus {
-  text-decoration: underline;
+  display: none;
 }
 #content .comments-link {
   float: right;
   color: #fff;
-  font: 500 90% /2.5 'Maven Pro';
-  line-height: 1;
+  font: 500 90% / 2.5 'Maven Pro';
+  line-height: 1.5;
   font-size: 80%;
-}
-#content .comments-link span {
-  font-size: 150%;
 }
 #content .comments-link a {
   display: block;
   text-align: center;
   position: relative;
-  background-color: #8ea6cd;
+  background-color: #000000;
+  padding: 0 0.75em;
+  margin: 0 0.5em;
+  border-radius: 0.5em;
   text-decoration: none;
-  padding: 1.5ex 2ex;
-  margin: 0 -2ex;
-  border-radius: 2ex;
 }
 #content .comments-link a::after {
   content: '';
   height: 0;
   width: 0;
   position: absolute;
-  border: 9px solid transparent;
-  right: 4ex;
+  border: 0.5em solid rgba(0, 0, 0, 0);
+  left: 50%;
+  margin-left: -0.375em;
   top: 100%;
-  border-top-color: #8ea6cd;
-  border-right-width: 3px;
+  border-top-color: #000000;
+  border-right-width: 0.25em;
 }
-#content .comments-link a:hover, #content .comments-link a:focus {
-  background-color: #1d4d9a;
-}
-#content .comments-link a:hover::after, #content .comments-link a:focus::after {
-  border-top-color: #1d4d9a;
+#content .comments-link a:focus, #content .comments-link a:hover {
+  text-decoration: underline;
 }
 .single #content .post footer {
   margin-bottom: 2em;
 }
 .single #content .taxonomy {
-  float: none;
+  display: block;
+  font: 500 90% / 2.5 'Maven Pro';
+  line-height: 1;
+  font-size: 80%;
+  color: #757575;
+}
+.single #content .taxonomy a {
+  text-decoration: none;
+}
+.single #content .taxonomy a:focus, .single #content .taxonomy a:hover {
+  text-decoration: underline;
 }
 .single-author .byline {
-  display: none;
+  display: none !important;
 }
-@media all and (min-width: 900px) {
-  #content .post header h1 {
-    margin-bottom: 1em;
-  }
-  #content .post header .date {
-    color: inherit;
-    text-align: right;
-    position: absolute;
-    left: -5em;
-    bottom: 0;
-    width: 4em;
-    margin: 0;
-    padding: 0;
-  }
-  #content .post header .date .day-month {
-    display: block;
-    word-spacing: -0.25ex;
-  }
-  #content .post header .date .day {
-    font-size: 120%;
-  }
-  #content .post header .date .month {
-    font-size: 80%;
-  }
-  #content .post header .date .year {
-    display: block;
-    font-size: 120%;
-  }
+.multiple #content .post.with-thumbnail footer {
+  margin: 0;
+}
+#content .post.with-thumbnail {
+  margin-top: 2em;
+  position: relative;
+}
+#content .post.with-thumbnail header hgroup {
+  margin: 0 -2em;
+}
+#content .post.with-thumbnail header h1 {
+  margin-top: 0;
+}
+#content .post.with-thumbnail header h1 a {
+  display: block;
+  position: relative;
+}
+#content .post.with-thumbnail header h1 a img {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+}
+#content .post.with-thumbnail header h1 a span {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  padding: 0.5em 2rem;
+  color: #fff;
+  text-shadow: #000 0 1px 4px;
+}
+#content .post.with-thumbnail header h1 a:hover span, #content .post.with-thumbnail header h1 a:focus span {
+  text-decoration: underline;
+}
+#content .post.with-thumbnail header .entry-meta {
+  position: absolute;
+  top: 0em;
+  color: #fff;
+  text-shadow: #000 0 1px 2px;
+  padding-top: 0.3em;
+}
+#content .post.with-thumbnail .comments-link {
+  position: absolute;
+  top: 1em;
+  right: 0;
+}
+#content .post.with-thumbnail .comments-link a {
+  box-shadow: #000 0 1px 4px;
+  background-color: #fff;
+  color: #000;
+}
+#content .post.with-thumbnail .comments-link a::after {
+  border-top-color: #fff;
+}
+#content .post.with-thumbnail .comments-link a:hover, #content .post.with-thumbnail .comments-link a:focus {
+  background-color: #fff;
+  color: #000;
+}
+#content .post.with-thumbnail .comments-link a:hover::after, #content .post.with-thumbnail .comments-link a:focus::after {
+  border-top-color: #fff;
 }
 #comments {
   margin-top: 2em;
   font: normal normal normal 1em /1.5 'Noticia Text';
 }
-#comments h2 {
+#comments > h2 {
   display: none;
 }
 #comments ol, #comments ul {
   list-style: none outside;
+}
+#comments .pingback {
+  margin-bottom: 1em;
+  font: 500 90% / 2.5 'Maven Pro';
+  line-height: 1.2em;
 }
 #comments .comment {
   margin-bottom: 1em;
@@ -385,21 +509,22 @@ body {
   background-color: #dee790;
 }
 #comments .comment footer {
-  font: 500 90% /2.5 'Maven Pro';
+  font: 500 90% / 2.5 'Maven Pro';
   line-height: 2em;
   position: relative;
 }
 #comments .comment footer a {
   text-decoration: none;
 }
-#comments .comment footer a:hover, #comments .comment footer a:focus {
+#comments .comment footer a:focus, #comments .comment footer a:hover {
   text-decoration: underline;
 }
 #comments .comment footer .comment-author {
-  display: inline;
+  display: inline-block;
   padding-right: 2em;
 }
 #comments .comment footer .comment-author cite {
+  display: inline-block;
   font: inherit;
   position: relative;
 }
@@ -408,8 +533,9 @@ body {
   height: 0;
   width: 0;
   position: absolute;
-  border: 9px solid transparent;
-  right: -4.5px;
+  border: 8px solid rgba(222, 231, 144, 0);
+  right: -4px;
+  top: 0;
   border-top-color: #dee790;
 }
 #comments .comment footer .comment-meta {
@@ -431,21 +557,25 @@ body {
   border: 2px solid #bdce20;
   background-color: transparent;
 }
-#comments .comment.byuser footer .comment-author cite::before, #comments .comment.byuser footer .comment-author cite::after {
+#comments .comment.byuser footer .comment-author cite::before {
   content: '';
   height: 0;
   width: 0;
   position: absolute;
-  border: 9px solid transparent;
-  right: -4.5px;
-}
-#comments .comment.byuser footer .comment-author cite::before {
+  border: 8px solid rgba(189, 206, 32, 0);
+  right: -4px;
   border-top-color: #bdce20;
-  margin-top: -2px;
+  top: -2px;
 }
 #comments .comment.byuser footer .comment-author cite::after {
+  content: '';
+  height: 0;
+  width: 0;
+  position: absolute;
+  border: 5px solid rgba(255, 255, 255, 0);
+  right: -1px;
   border-top-color: #fff;
-  margin-top: -5px;
+  top: -2px;
 }
 #comments .children {
   padding-left: 1em;
@@ -455,7 +585,7 @@ body {
   margin-bottom: 3em;
 }
 #comments #respond {
-  font: 500 90% /2.5 'Maven Pro';
+  font: 500 90% / 2.5 'Maven Pro';
   line-height: 1;
   margin: 1em 0 3em;
 }
@@ -508,4 +638,518 @@ body {
 }
 #colophon p {
   margin: 1em 0;
+}
+.entry-content,
+.tag-archive-meta,
+.category-archive-meta,
+.comment-content,
+.comment.byuser .comment-content {
+  clear: both;
+  font: normal normal normal 1em /1.5 'Noticia Text';
+}
+.entry-content a:focus,
+.tag-archive-meta a:focus,
+.category-archive-meta a:focus,
+.comment-content a:focus,
+.comment.byuser .comment-content a:focus,
+.entry-content a:hover,
+.tag-archive-meta a:hover,
+.category-archive-meta a:hover,
+.comment-content a:hover,
+.comment.byuser .comment-content a:hover {
+  color: #1d4d9a;
+}
+.entry-content p,
+.tag-archive-meta p,
+.category-archive-meta p,
+.comment-content p,
+.comment.byuser .comment-content p {
+  margin: 0.5em 0;
+}
+.entry-content h1,
+.tag-archive-meta h1,
+.category-archive-meta h1,
+.comment-content h1,
+.comment.byuser .comment-content h1,
+.entry-content h2,
+.tag-archive-meta h2,
+.category-archive-meta h2,
+.comment-content h2,
+.comment.byuser .comment-content h2,
+.entry-content h3,
+.tag-archive-meta h3,
+.category-archive-meta h3,
+.comment-content h3,
+.comment.byuser .comment-content h3,
+.entry-content h4,
+.tag-archive-meta h4,
+.category-archive-meta h4,
+.comment-content h4,
+.comment.byuser .comment-content h4,
+.entry-content h5,
+.tag-archive-meta h5,
+.category-archive-meta h5,
+.comment-content h5,
+.comment.byuser .comment-content h5,
+.entry-content h6,
+.tag-archive-meta h6,
+.category-archive-meta h6,
+.comment-content h6,
+.comment.byuser .comment-content h6 {
+  font: normal normal 400 1em /1.1 'Maven Pro';
+  text-transform: uppercase;
+  margin: 1em 0 0.5em;
+}
+.entry-content h1,
+.tag-archive-meta h1,
+.category-archive-meta h1,
+.comment-content h1,
+.comment.byuser .comment-content h1 {
+  font-size: 2.5em;
+}
+.entry-content h2,
+.tag-archive-meta h2,
+.category-archive-meta h2,
+.comment-content h2,
+.comment.byuser .comment-content h2 {
+  font-size: 2em;
+}
+.entry-content h3,
+.tag-archive-meta h3,
+.category-archive-meta h3,
+.comment-content h3,
+.comment.byuser .comment-content h3 {
+  font-size: 1.5em;
+}
+.entry-content h4,
+.tag-archive-meta h4,
+.category-archive-meta h4,
+.comment-content h4,
+.comment.byuser .comment-content h4 {
+  font-size: 1.2em;
+}
+.entry-content h5,
+.tag-archive-meta h5,
+.category-archive-meta h5,
+.comment-content h5,
+.comment.byuser .comment-content h5 {
+  font-size: 1em;
+}
+.entry-content h6,
+.tag-archive-meta h6,
+.category-archive-meta h6,
+.comment-content h6,
+.comment.byuser .comment-content h6 {
+  font-size: 0.8em;
+}
+.entry-content > blockquote,
+.tag-archive-meta > blockquote,
+.category-archive-meta > blockquote,
+.comment-content > blockquote,
+.comment.byuser .comment-content > blockquote {
+  margin: 0 -1em;
+  padding: 0.25em 1em;
+  background: #dee790;
+  position: relative;
+}
+.entry-content > blockquote::after,
+.tag-archive-meta > blockquote::after,
+.category-archive-meta > blockquote::after,
+.comment-content > blockquote::after,
+.comment.byuser .comment-content > blockquote::after {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-style: solid;
+  border-width: 0 0.8em 0.8em 0;
+  border-color: #ffffff #ffffff #c5d43c #c5d43c;
+  background-color: #c5d43c;
+  box-shadow: -1px 1px 1px rgba(13, 14, 3, 0.3);
+}
+.entry-content > blockquote cite,
+.tag-archive-meta > blockquote cite,
+.category-archive-meta > blockquote cite,
+.comment-content > blockquote cite,
+.comment.byuser .comment-content > blockquote cite {
+  font-style: normal;
+  font-size: 80%;
+}
+.entry-content > blockquote cite::before,
+.tag-archive-meta > blockquote cite::before,
+.category-archive-meta > blockquote cite::before,
+.comment-content > blockquote cite::before,
+.comment.byuser .comment-content > blockquote cite::before {
+  content: '— ';
+}
+.entry-content > blockquote blockquote,
+.tag-archive-meta > blockquote blockquote,
+.category-archive-meta > blockquote blockquote,
+.comment-content > blockquote blockquote,
+.comment.byuser .comment-content > blockquote blockquote {
+  margin-left: 1em;
+}
+.entry-content ol,
+.tag-archive-meta ol,
+.category-archive-meta ol,
+.comment-content ol,
+.comment.byuser .comment-content ol,
+.entry-content ul,
+.tag-archive-meta ul,
+.category-archive-meta ul,
+.comment-content ul,
+.comment.byuser .comment-content ul {
+  margin: 0.5em 0;
+  list-style: none outside;
+  counter-reset: item;
+}
+.entry-content ol li,
+.tag-archive-meta ol li,
+.category-archive-meta ol li,
+.comment-content ol li,
+.comment.byuser .comment-content ol li,
+.entry-content ul li,
+.tag-archive-meta ul li,
+.category-archive-meta ul li,
+.comment-content ul li,
+.comment.byuser .comment-content ul li {
+  counter-increment: item;
+  position: relative;
+}
+.entry-content ol li::before,
+.tag-archive-meta ol li::before,
+.category-archive-meta ol li::before,
+.comment-content ol li::before,
+.comment.byuser .comment-content ol li::before,
+.entry-content ul li::before,
+.tag-archive-meta ul li::before,
+.category-archive-meta ul li::before,
+.comment-content ul li::before,
+.comment.byuser .comment-content ul li::before {
+  position: absolute;
+  font-family: 'Maven Pro';
+  right: 100%;
+  margin-right: 0.5em;
+  content: counter(item, decimal);
+  color: #1d4d9a;
+}
+.entry-content ol ol,
+.tag-archive-meta ol ol,
+.category-archive-meta ol ol,
+.comment-content ol ol,
+.comment.byuser .comment-content ol ol,
+.entry-content ul ol,
+.tag-archive-meta ul ol,
+.category-archive-meta ul ol,
+.comment-content ul ol,
+.comment.byuser .comment-content ul ol,
+.entry-content ol ul,
+.tag-archive-meta ol ul,
+.category-archive-meta ol ul,
+.comment-content ol ul,
+.comment.byuser .comment-content ol ul,
+.entry-content ul ul,
+.tag-archive-meta ul ul,
+.category-archive-meta ul ul,
+.comment-content ul ul,
+.comment.byuser .comment-content ul ul {
+  margin-left: 1em;
+}
+.entry-content ol ol li::before,
+.tag-archive-meta ol ol li::before,
+.category-archive-meta ol ol li::before,
+.comment-content ol ol li::before,
+.comment.byuser .comment-content ol ol li::before {
+  content: counter(item, lower-alpha);
+}
+.entry-content ol ol ol li::before,
+.tag-archive-meta ol ol ol li::before,
+.category-archive-meta ol ol ol li::before,
+.comment-content ol ol ol li::before,
+.comment.byuser .comment-content ol ol ol li::before {
+  content: counter(item, lower-roman);
+}
+.entry-content ul li::before,
+.tag-archive-meta ul li::before,
+.category-archive-meta ul li::before,
+.comment-content ul li::before,
+.comment.byuser .comment-content ul li::before {
+  content: '•';
+}
+.entry-content ul ul li::before,
+.tag-archive-meta ul ul li::before,
+.category-archive-meta ul ul li::before,
+.comment-content ul ul li::before,
+.comment.byuser .comment-content ul ul li::before {
+  content: '‣';
+}
+.entry-content ul ul ul li::before,
+.tag-archive-meta ul ul ul li::before,
+.category-archive-meta ul ul ul li::before,
+.comment-content ul ul ul li::before,
+.comment.byuser .comment-content ul ul ul li::before {
+  content: '⁃';
+}
+.entry-content dl dt,
+.tag-archive-meta dl dt,
+.category-archive-meta dl dt,
+.comment-content dl dt,
+.comment.byuser .comment-content dl dt {
+  font-weight: bold;
+  margin-top: 0.5em;
+}
+.entry-content dl dd,
+.tag-archive-meta dl dd,
+.category-archive-meta dl dd,
+.comment-content dl dd,
+.comment.byuser .comment-content dl dd {
+  margin-left: 1em;
+}
+.entry-content table,
+.tag-archive-meta table,
+.category-archive-meta table,
+.comment-content table,
+.comment.byuser .comment-content table {
+  border-top: 3px solid;
+  border-bottom: 3px solid;
+  border-collapse: collapse;
+  margin: 0.5em auto;
+}
+.entry-content table tr,
+.tag-archive-meta table tr,
+.category-archive-meta table tr,
+.comment-content table tr,
+.comment.byuser .comment-content table tr {
+  border-bottom: 1px solid;
+}
+.entry-content table thead,
+.tag-archive-meta table thead,
+.category-archive-meta table thead,
+.comment-content table thead,
+.comment.byuser .comment-content table thead {
+  border-bottom: 2px solid;
+}
+.entry-content table tfoot,
+.tag-archive-meta table tfoot,
+.category-archive-meta table tfoot,
+.comment-content table tfoot,
+.comment.byuser .comment-content table tfoot {
+  border-top: 2px solid;
+}
+.entry-content table th,
+.tag-archive-meta table th,
+.category-archive-meta table th,
+.comment-content table th,
+.comment.byuser .comment-content table th,
+.entry-content table td,
+.tag-archive-meta table td,
+.category-archive-meta table td,
+.comment-content table td,
+.comment.byuser .comment-content table td {
+  padding: 0.25em 0.5em;
+}
+.entry-content table th,
+.tag-archive-meta table th,
+.category-archive-meta table th,
+.comment-content table th,
+.comment.byuser .comment-content table th {
+  font-weight: normal;
+}
+.entry-content code,
+.tag-archive-meta code,
+.category-archive-meta code,
+.comment-content code,
+.comment.byuser .comment-content code,
+.entry-content kbd,
+.tag-archive-meta kbd,
+.category-archive-meta kbd,
+.comment-content kbd,
+.comment.byuser .comment-content kbd,
+.entry-content tt,
+.tag-archive-meta tt,
+.category-archive-meta tt,
+.comment-content tt,
+.comment.byuser .comment-content tt,
+.entry-content pre,
+.tag-archive-meta pre,
+.category-archive-meta pre,
+.comment-content pre,
+.comment.byuser .comment-content pre {
+  font: inherit;
+  color: #1d4d9a;
+}
+.entry-content del,
+.tag-archive-meta del,
+.category-archive-meta del,
+.comment-content del,
+.comment.byuser .comment-content del,
+.entry-content strike,
+.tag-archive-meta strike,
+.category-archive-meta strike,
+.comment-content strike,
+.comment.byuser .comment-content strike,
+.entry-content s,
+.tag-archive-meta s,
+.category-archive-meta s,
+.comment-content s,
+.comment.byuser .comment-content s {
+  text-decoration: line-through;
+}
+.entry-content ins,
+.tag-archive-meta ins,
+.category-archive-meta ins,
+.comment-content ins,
+.comment.byuser .comment-content ins,
+.entry-content mark,
+.tag-archive-meta mark,
+.category-archive-meta mark,
+.comment-content mark,
+.comment.byuser .comment-content mark {
+  background-color: #faf28a;
+}
+.entry-content q,
+.tag-archive-meta q,
+.category-archive-meta q,
+.comment-content q,
+.comment.byuser .comment-content q {
+  quotes: '“' '”' '‘' '’';
+}
+.entry-content q::before,
+.tag-archive-meta q::before,
+.category-archive-meta q::before,
+.comment-content q::before,
+.comment.byuser .comment-content q::before {
+  content: open-quote;
+}
+.entry-content q::after,
+.tag-archive-meta q::after,
+.category-archive-meta q::after,
+.comment-content q::after,
+.comment.byuser .comment-content q::after {
+  content: close-quote;
+}
+.entry-content sub,
+.tag-archive-meta sub,
+.category-archive-meta sub,
+.comment-content sub,
+.comment.byuser .comment-content sub,
+.entry-content sup,
+.tag-archive-meta sup,
+.category-archive-meta sup,
+.comment-content sup,
+.comment.byuser .comment-content sup {
+  line-height: inherit;
+  font-size: 80%;
+}
+.entry-content sub,
+.tag-archive-meta sub,
+.category-archive-meta sub,
+.comment-content sub,
+.comment.byuser .comment-content sub {
+  vertical-align: bottom;
+}
+.entry-content sup,
+.tag-archive-meta sup,
+.category-archive-meta sup,
+.comment-content sup,
+.comment.byuser .comment-content sup {
+  vertical-align: top;
+}
+.entry-content img,
+.tag-archive-meta img,
+.category-archive-meta img,
+.comment-content img,
+.comment.byuser .comment-content img {
+  max-width: 100%;
+  height: auto;
+}
+.entry-content .alignleft,
+.tag-archive-meta .alignleft,
+.category-archive-meta .alignleft,
+.comment-content .alignleft,
+.comment.byuser .comment-content .alignleft {
+  float: left;
+  margin: 0.125em 0.5em 0.125em 0;
+}
+.entry-content .alignright,
+.tag-archive-meta .alignright,
+.category-archive-meta .alignright,
+.comment-content .alignright,
+.comment.byuser .comment-content .alignright {
+  float: right;
+  margin: 0.125em 0 0.125em 0.5em;
+}
+.entry-content .aligncenter,
+.tag-archive-meta .aligncenter,
+.category-archive-meta .aligncenter,
+.comment-content .aligncenter,
+.comment.byuser .comment-content .aligncenter,
+.entry-content .alignnone,
+.tag-archive-meta .alignnone,
+.category-archive-meta .alignnone,
+.comment-content .alignnone,
+.comment.byuser .comment-content .alignnone {
+  display: block;
+  margin: 0.5em auto;
+}
+.entry-content .wp-caption .wp-caption-text,
+.tag-archive-meta .wp-caption .wp-caption-text,
+.category-archive-meta .wp-caption .wp-caption-text,
+.comment-content .wp-caption .wp-caption-text,
+.comment.byuser .comment-content .wp-caption .wp-caption-text {
+  font-size: 90%;
+  text-align: center;
+}
+.comment-content a:focus, .comment-content a:hover {
+  color: #000000;
+}
+.comment-content ol, .comment-content ul {
+  margin-left: 1em !important;
+}
+.comment-content ol li::before, .comment-content ul li::before {
+  color: #000000 !important;
+}
+.comment-content > blockquote {
+  margin: 0 -1em;
+  padding: 0.25em 1em;
+  background: #ffffff;
+  position: relative;
+  margin-left: -0.5em !important;
+  margin-right: -0.5em !important;
+}
+.comment-content > blockquote::after {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-style: solid;
+  border-width: 0 0.8em 0.8em 0;
+  border-color: #dee790 #dee790 #cccccc #cccccc;
+  background-color: #cccccc;
+  box-shadow: -1px 1px 1px rgba(77, 77, 77, 0.3);
+}
+.comment-content > blockquote cite {
+  font-style: normal;
+  font-size: 80%;
+}
+.comment-content > blockquote cite::before {
+  content: '— ';
+}
+.comment-content > blockquote blockquote {
+  margin-left: 1em;
+}
+.comment-content code,
+.comment-content kbd,
+.comment-content tt,
+.comment-content pre {
+  color: #000;
+}
+@media (max-width: 45em) {
+  * {
+    color: #ff0000 !important;
+  }
 }

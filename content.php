@@ -2,26 +2,28 @@
 /**
  * @package Toolbox
  */
-$is_post = 'post' == get_post_type();
 ?>
-
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(has_post_thumbnail() ? 'with-thumbnail' : 'without-thumnail'); ?>>
+	<?php if(toolbox_show_title()) { ?>
 	<header class="entry-header">
-		<h1 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'toolbox' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
-		<?php if ($is_post) { ?>
-			<div class="entry-meta"><?php toolbox_posted_on(); ?></div>
-		<?php } ?>
+		<hgroup>
+			<h1 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'toolbox' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><span><?php the_title(); ?></span><?php if(has_post_thumbnail()) the_post_thumbnail('full'); ?></a></h1>
+		</hgroup>
+		<div class="entry-meta"><?php toolbox_posted_on(); ?></div>
 	</header>
+	<?php } ?>
 	<?php if ( is_search() ) { // Only display Excerpts for Search ?>
 		<div class="entry-summary hyphenate"><?php the_excerpt(); ?></div>
-	<?php } else { ?>
+	<?php } else if(!has_post_thumbnail() || is_singular()){ ?>
 		<div class="entry-content hyphenate"><?php
 			the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'toolbox' ) );
-wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'toolbox' ), 'after' => '</div>' ) );
+		?></div>
+		<div class="pre-footer"><?php
+			toolbox_link_pages();
 		?></div>
 	<?php } ?>
 	<footer class="entry-meta">
-		<?php if ($is_post) { ?>
+		<?php if (toolbox_show_title()) { ?>
 			<div class="taxonomy">
 			<?php
 				/* translators: used between list items, there is a space after the comma */
@@ -42,10 +44,11 @@ wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'too
 			</p>
 			<?php } ?>
 			</div>
+		<?php } else { ?>
+			<div class="entry-meta"><?php toolbox_posted_on(); ?></div>
 		<?php } ?>
-		<?php // edit_post_link( __( 'Edit', 'toolbox' ), '<p class="edit-link">', '</p>' ); ?>
 		<?php if ( !is_singular() && (comments_open() || ( '0' != get_comments_number() && ! comments_open() )) ) { ?>
-			<p class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'toolbox' ), __( '<span>1</span> Comment', 'toolbox' ), __( '<span>%</span> Comments', 'toolbox' ) ); ?></p>
+			<p class="comments-link"><?php comments_popup_link( __( '<span class="number">0</span><span class="implicit-text"> Comments</span>', 'toolbox' ), __( '<span class="number">1</span><span class="implicit-text"> Comment</span>', 'toolbox' ), __( '<span class="number">%</span><span class="implicit-text"> Comments</span>', 'toolbox' ) ); ?></p>
 		<?php } ?>
 	</footer>
 </article>

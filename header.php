@@ -22,14 +22,14 @@
 <!--<![endif]-->
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <title><?php
 	/*
 	 * Print the <title> tag based on what is being viewed.
 	 */
 	global $page, $paged;
 
-	wp_title( '|', true, 'right' );
+	wp_title( '—', true, 'right' );
 
 	// Add the blog name.
 	bloginfo( 'name' );
@@ -51,11 +51,10 @@
 <!--[if lt IE 9]>
 <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
 <![endif]-->
-
 <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(is_singular() ? '' : 'multiple'); ?>>
 <?php do_action( 'before' ); ?>
 	<header id="branding" role="banner">
 		<hgroup>

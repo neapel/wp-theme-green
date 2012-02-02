@@ -12,62 +12,34 @@
  */
 
 get_header(); ?>
-
-		<section id="primary">
-			<div id="content" role="main">
-
-			<?php if ( have_posts() ) : ?>
-
-				<header class="page-header">
-					<h1 class="page-title">
-						<?php
-							if ( is_day() ) :
-								printf( __( 'Daily Archives: %s', 'toolbox' ), '<span>' . get_the_date() . '</span>' );
-							elseif ( is_month() ) :
-								printf( __( 'Monthly Archives: %s', 'toolbox' ), '<span>' . get_the_date( 'F Y' ) . '</span>' );
-							elseif ( is_year() ) :
-								printf( __( 'Yearly Archives: %s', 'toolbox' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
-							else :
-								_e( 'Archives', 'toolbox' );
-							endif;
-						?>
-					</h1>
-				</header>
-
-				<?php rewind_posts(); ?>
-
-				<?php /* Start the Loop */ ?>
-				<?php while ( have_posts() ) : the_post(); ?>
-
-					<?php
-						/* Include the Post-Format-specific template for the content.
-						 * If you want to overload this in a child theme then include a file
-						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-						 */
-						get_template_part( 'content', get_post_format() );
-					?>
-
-				<?php endwhile; ?>
-
-				<?php toolbox_content_nav( 'nav-below' ); ?>
-
-			<?php else : ?>
-
-				<article id="post-0" class="post no-results not-found">
-					<header class="entry-header">
-						<h1 class="entry-title"><?php _e( 'Nothing Found', 'toolbox' ); ?></h1>
-					</header><!-- .entry-header -->
-
-					<div class="entry-content">
-						<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'toolbox' ); ?></p>
-						<?php get_search_form(); ?>
-					</div><!-- .entry-content -->
-				</article><!-- #post-0 -->
-
-			<?php endif; ?>
-
-			</div><!-- #content -->
-		</section><!-- #primary -->
-
+<section id="primary">
+	<div id="content" role="main">
+		<header class="page-header">
+			<h1 class="page-title"><?php
+				$y = get_the_time('Y');
+				$m = get_the_time('m');
+				$d = get_the_time('d');
+				if ( is_day() ) { ?>
+					<? _e('Daily Archives:') ?>
+					<span>
+						<?php the_time('j.') ?>
+						<a href="<?php echo get_month_link($y,$m) ?>" title="<?php echo __('Show all posts of this month', 'toolbox') ?>"><?php the_time('F') ?></a>
+						<a href="<?php echo get_year_link($y) ?>" title="<?php echo __('Show all posts of this year', 'toolbox') ?>"><?php the_time('Y') ?></a>
+				<?php } else if ( is_month() ) { ?>
+					<? _e('Monthly Archives:') ?>
+					<span>
+						<?php the_time('F') ?>
+						<a href="<?php echo get_year_link($y) ?>" title="<?php echo __('Show all posts of this year', 'toolbox') ?>"><?php the_time('Y') ?></a>
+					</span>
+				<?php } else if ( is_year() ) {
+					printf( __( 'Yearly Archives: %s', 'toolbox' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
+				} else {
+					_e( 'Archives', 'toolbox' );
+				}
+			?></h1>
+		</header>
+		<?php toolbox_post_list() ?>
+	</div>
+</section>
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

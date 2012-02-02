@@ -68,7 +68,18 @@ function toolbox_setup() {
 	/**
 	 * Add support for the Aside and Gallery Post Formats
 	 */
-	//add_theme_support( 'post-formats', array( 'aside', 'image', 'gallery' ) );
+	add_theme_support( 'post-formats', array(
+		'aside', // no title
+		'gallery', // gallery shortcode, image attachments
+		'link', // first link external/content only url
+		'image', // single image/url
+		'quote', // blockquote, title:author
+		'status', // no title, tweet-like
+		'video', // single video/attachment
+		'audio', // single audio/attachment
+		'chat', // transcript
+	) );
+	add_theme_support('post-thumbnails', array('post'));
 }
 endif; // toolbox_setup
 
@@ -123,7 +134,7 @@ function toolbox_content_nav( $nav_id ) {
 		$has_next = !!get_next_post();
 	} else if($wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) {
 		$has_prev = !!get_next_posts_link();
-		$has_next = !!get_prev_posts_link();
+		$has_next = !!get_previous_posts_link();
 	}
 	if($has_next || $has_prev) {
 	?>
@@ -140,7 +151,7 @@ function toolbox_content_nav( $nav_id ) {
 				echo '</li>';
 			}
 			if($has_next) {
-				echo '<li class="nav-previous">';
+				echo '<li class="nav-next">';
 				previous_posts_link( __( '<span>Newer posts <span class="meta-nav">&rarr;</span></span>', 'toolbox' ) );
 				echo '</li>';
 			}
@@ -148,6 +159,34 @@ function toolbox_content_nav( $nav_id ) {
 	?></ul><span class="helper" /></div>
 	</nav>
 <?php
+	}
+}
+
+
+
+/**
+ * The formatted output of a list of pages.
+ *
+ * Displays page links for paginated posts (i.e. includes the <!--nextpage-->.
+ * Quicktag one or more times). This tag must be within The Loop.
+ *
+ * Replaces wp_link_pages
+ */
+function toolbox_link_pages() {
+	global $page, $numpages, $multipage;
+	if( $multipage ) {
+		echo '<nav class="post-pagination">';
+		echo '<h1 class="assistive-text">Multi-page post navigation</h1>';
+		echo '<div class="menu">';
+		echo '<p class="pages-text">'. __('Pages:') . '</p>';
+		echo '<ul>';
+		for( $i = 1 ; $i <= $numpages ; $i += 1 ) {
+			if( $i == $page )
+				echo '<li class="current-page"><span>' . $i . '</span></li>';
+			else
+				echo '<li class="other-page">' . _wp_link_page($i) . $i . '</a></li>';
+		}
+		echo '</ul></div></nav>';
 	}
 }
 
@@ -169,7 +208,7 @@ function toolbox_comment( $comment, $args, $depth ) {
 		case 'trackback' :
 	?>
 	<li class="post pingback">
-		<p><?php _e( 'Pingback:', 'toolbox' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( '(Edit)', 'toolbox' ), ' ' ); ?></p>
+		<p><span class="description"><?php _e( 'Trackback:', 'toolbox' ); ?> </span><?php comment_author_link(); ?><?php edit_comment_link( __( '(Edit)', 'toolbox' ), ' ' ); ?></p>
 	<?php
 			break;
 		default :
@@ -201,6 +240,21 @@ function toolbox_comment( $comment, $args, $depth ) {
 	}
 }
 
+
+function toolbox_show_title() {
+	if(get_the_title() == '') return false;
+	switch(get_post_format()) {
+		case 'aside':
+		case 'link':
+		case 'image':
+		case 'quote':
+		case 'status':
+			return false;
+		default:
+			return true;
+	}
+}
+
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  * Create your own toolbox_posted_on to override in a child theme
@@ -226,7 +280,12 @@ function toolbox_posted_on() {
 		<span class="implicit-text"><?php echo __('by', 'toolbox') ?></span>
 		<span class="author vcard"><a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ) ?>" title="<?php echo sprintf( __( 'View all posts by %s', 'toolbox' ), get_the_author() ) ?>" rel="author"><?php echo get_the_author() ?></a></span>
 	</p>
-<?php
+	<?php if(!toolbox_show_title()) { // no title displayed ?>
+	<p class="permalink">
+		<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'toolbox' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">Permalink</a>
+	</p>
+	<?php }
+	edit_post_link( __( 'Edit', 'toolbox' ), '<p class="edit-link">', '</p>' );
 }
 /*
 function toolbox_posted_on() {?>
@@ -302,7 +361,7 @@ add_action( 'save_post', 'toolbox_category_transient_flusher' );
  */
 function toolbox_enhanced_image_navigation( $url ) {
 	global $post, $wp_rewrite;
-
+	if(!$post) return null;
 	$id = (int) $post->ID;
 	$object = get_post( $id );
 	if ( wp_attachment_is_image( $post->ID ) && ( $wp_rewrite->using_permalinks() && ( $object->post_parent > 0 ) && ( $object->post_parent != $id ) ) )
@@ -311,6 +370,46 @@ function toolbox_enhanced_image_navigation( $url ) {
 	return $url;
 }
 add_filter( 'attachment_link', 'toolbox_enhanced_image_navigation' );
+
+
+
+
+function toolbox_post_list() {
+	rewind_posts();
+?>
+			<?php if ( have_posts() ) : ?>
+
+				<?php /* Start the Loop */ ?>
+				<?php while ( have_posts() ) : the_post(); ?>
+
+					<?php
+						/* Include the Post-Format-specific template for the content.
+						 * If you want to overload this in a child theme then include a file
+						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+						 */
+						get_template_part( 'content', get_post_format() );
+					?>
+
+				<?php endwhile; ?>
+
+				<?php toolbox_content_nav( 'nav-below' ); ?>
+
+			<?php else : ?>
+
+				<article id="post-0" class="post no-results not-found">
+					<header class="entry-header">
+						<h1 class="entry-title"><?php _e( 'Nothing Found', 'toolbox' ); ?></h1>
+					</header><!-- .entry-header -->
+
+					<div class="entry-content">
+						<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'toolbox' ); ?></p>
+						<?php get_search_form(); ?>
+					</div><!-- .entry-content -->
+				</article><!-- #post-0 -->
+
+			<?php endif; ?>
+<?php
+}
 
 
 /**
