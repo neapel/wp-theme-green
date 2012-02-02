@@ -1,0 +1,236 @@
+# Copyright (C) 2012 pascal
+# This file is distributed under the GNU General Public License.
+# pascal <pascal@ensieve.org>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Jan1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tags/jan1\n"
+"POT-Creation-Date: 2012-02-02 18:29:28+00:00\n"
+"PO-Revision-Date: 2012-02-02 19:51+0100\n"
+"Last-Translator: pascal <pascal@ensieve.org>\n"
+"Language-Team: German <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: author.php:14
+msgid "All posts by %s"
+msgstr "Alle posts von %s"
+
+#: content.php:10
+#: functions.php:285
+msgid "Permalink to %s"
+msgstr "Permalink auf %s"
+
+#: content.php:19
+msgid "Continue reading"
+msgstr "Weiterlesen"
+
+#. translators: used between list items, there is a space after the comma
+#: content.php:30
+#: content.php:39
+msgid ", "
+msgstr ", "
+
+#: content.php:34
+msgid "Posted in"
+msgstr "Kategorie:"
+
+#: content.php:43
+msgid "Tagged as"
+msgstr "Tags:"
+
+#: content.php:54
+#: content.php:56
+msgid "Comments"
+msgstr "Kommentare"
+
+#: content.php:55
+msgid "Comment"
+msgstr "Kommentar"
+
+#: search.php:13
+msgid "Search Results for: %s"
+msgstr "Suchergebnis für: %s"
+
+#: search.php:24
+#: functions.php:401
+msgid "Nothing Found"
+msgstr "Nichts gefunden"
+
+#: search.php:27
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Leider wurde nichts gefunden, vielleicht mit anderen Worten?"
+
+#: comments.php:16
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr "Dieser Post ist passwortgeschützt, bitte eingeben um die Kommentare anzusehen."
+
+#: comments.php:28
+msgid "One comment"
+msgid_plural "%1$s comments"
+msgstr[0] "Ein Kommentar"
+msgstr[1] "%1$s Kommentare"
+
+#: comments.php:41
+msgid "Comment navigation"
+msgstr "Kommentarnavigation"
+
+#: comments.php:44
+msgid "Older Comments"
+msgstr "Ältere Kommentare"
+
+#: comments.php:45
+msgid "Newer Comments"
+msgstr "Neuere Kommentare"
+
+#: comments.php:55
+msgid "Comments are closed."
+msgstr "Kommentare sind geschlossen."
+
+#: 404.php:16
+msgid "Well this is somewhat embarrassing, isn't it?"
+msgstr "Hm, ja…"
+
+#: 404.php:20
+msgid "It seems we can't find what you're looking for. Perhaps searching, or one of the links below, can help."
+msgstr "Nicht gefunden. Vielleicht hilft die Suche oder einer der Links unten?"
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "Häufigste Kategorien"
+
+#: 404.php:34
+msgid "Try looking in the monthly archives."
+msgstr "Vielleicht im Monatsarchiv?"
+
+#: category.php:14
+msgid "Category Archives: %s"
+msgstr "Kategorien-Archiv: %s"
+
+#: header.php:44
+msgid "Page %s"
+msgstr "Seite %s"
+
+#: header.php:69
+msgid "Main menu"
+msgstr "Hauptmenü"
+
+#: header.php:70
+msgid "Skip to content"
+msgstr "Zum Inhalt"
+
+#: functions.php:142
+msgid "Post navigation"
+msgstr "Postnavigation"
+
+#: functions.php:150
+msgid "Older posts"
+msgstr "Ältere Posts"
+
+#: functions.php:155
+msgid "Newer posts"
+msgstr "Neuere Posts"
+
+#: functions.php:181
+msgid "Pages:"
+msgstr "Seiten:"
+
+#: functions.php:211
+msgid "Trackback:"
+msgstr "Trackback:"
+
+#: functions.php:211
+#: functions.php:234
+#: functions.php:288
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: functions.php:222
+#: functions.php:280
+msgid "by"
+msgstr "von"
+
+#: functions.php:226
+msgid "%s ago"
+msgstr "vor %s"
+
+#: functions.php:229
+msgid "Your comment is awaiting moderation."
+msgstr "Dieser Kommentar muss noch freigeschaltet werden."
+
+#: functions.php:270
+msgid "Posted on"
+msgstr "Gepostet am"
+
+#: functions.php:273
+msgid "Show all posts of this day"
+msgstr "Alle Posts dieses Tages ansehen"
+
+#: functions.php:274
+#: archive.php:26
+msgid "Show all posts of this month"
+msgstr "Alle Posts dieses Monats ansehen"
+
+#: functions.php:276
+#: archive.php:27
+#: archive.php:32
+msgid "Show all posts of this year"
+msgstr "Alle Posts dieses Jahres ansehen"
+
+#: functions.php:281
+msgid "View all posts by %s"
+msgstr "Alle Posts von %s ansehen"
+
+#: functions.php:405
+msgid "It seems we can't find what you're looking for. Perhaps searching can help."
+msgstr "Nicht gefunden, vielleicht über die Suche?"
+
+#: tag.php:14
+msgid "Tag Archives: %s"
+msgstr "Tag-Archiv:"
+
+#: archive.php:23
+msgid "Daily Archives:"
+msgstr "Tagesarchiv:"
+
+#: archive.php:29
+msgid "Monthly Archives:"
+msgstr "Monatsarchiv:"
+
+#: archive.php:35
+msgid "Yearly Archives: %s"
+msgstr "Jahresarchiv: %s"
+
+#: archive.php:37
+msgid "Archives"
+msgstr "Archive"
+
+#. Theme Name of the plugin/theme
+msgid "Jan1"
+msgstr "Jan1"
+
+#. Theme URI of the plugin/theme
+msgid "http://wordpress.org/extend/themes/toolbox"
+msgstr "http://wordpress.org/extend/themes/toolbox"
+
+#. Description of the plugin/theme
+msgid "Grüün!"
+msgstr "Grüün!"
+
+#. Author of the plugin/theme
+msgid "pascal"
+msgstr "pascal"
+
+#. Author URI of the plugin/theme
+msgid "http://automattic.com/"
+msgstr "http://automattic.com/"
+
+#~ msgid "Primary Menu"
+#~ msgstr "Hauptmenü"
+
+#~ msgid "(Edit)"
+#~ msgstr "(Bearbeiten)"

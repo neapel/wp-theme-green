@@ -23,18 +23,18 @@ get_header(); ?>
 					<? _e('Daily Archives:') ?>
 					<span>
 						<?php the_time('j.') ?>
-						<a href="<?php echo get_month_link($y,$m) ?>" title="<?php echo __('Show all posts of this month', 'toolbox') ?>"><?php the_time('F') ?></a>
-						<a href="<?php echo get_year_link($y) ?>" title="<?php echo __('Show all posts of this year', 'toolbox') ?>"><?php the_time('Y') ?></a>
+						<a href="<?php echo get_month_link($y,$m) ?>" title="<?php echo __('Show all posts of this month', 'jan1') ?>"><?php the_time('F') ?></a>
+						<a href="<?php echo get_year_link($y) ?>" title="<?php echo __('Show all posts of this year', 'jan1') ?>"><?php the_time('Y') ?></a>
 				<?php } else if ( is_month() ) { ?>
 					<? _e('Monthly Archives:') ?>
 					<span>
 						<?php the_time('F') ?>
-						<a href="<?php echo get_year_link($y) ?>" title="<?php echo __('Show all posts of this year', 'toolbox') ?>"><?php the_time('Y') ?></a>
+						<a href="<?php echo get_year_link($y) ?>" title="<?php echo __('Show all posts of this year', 'jan1') ?>"><?php the_time('Y') ?></a>
 					</span>
 				<?php } else if ( is_year() ) {
-					printf( __( 'Yearly Archives: %s', 'toolbox' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
+					printf( __( 'Yearly Archives: %s', 'jan1' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
 				} else {
-					_e( 'Archives', 'toolbox' );
+					_e( 'Archives', 'jan1' );
 				}
 			?></h1>
 		</header>

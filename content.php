@@ -7,7 +7,7 @@
 	<?php if(toolbox_show_title()) { ?>
 	<header class="entry-header">
 		<hgroup>
-			<h1 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'toolbox' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><span><?php the_title(); ?></span><?php if(has_post_thumbnail()) the_post_thumbnail('full'); ?></a></h1>
+			<h1 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'jan1' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><span><?php the_title(); ?></span><?php if(has_post_thumbnail()) the_post_thumbnail('full'); ?></a></h1>
 		</hgroup>
 		<div class="entry-meta"><?php toolbox_posted_on(); ?></div>
 	</header>
@@ -16,7 +16,7 @@
 		<div class="entry-summary hyphenate"><?php the_excerpt(); ?></div>
 	<?php } else if(!has_post_thumbnail() || is_singular()){ ?>
 		<div class="entry-content hyphenate"><?php
-			the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'toolbox' ) );
+			the_content( __( 'Continue reading', 'jan1' ) );
 		?></div>
 		<div class="pre-footer"><?php
 			toolbox_link_pages();
@@ -27,28 +27,35 @@
 			<div class="taxonomy">
 			<?php
 				/* translators: used between list items, there is a space after the comma */
-				$categories_list = get_the_category_list( __( ', ', 'toolbox' ) );
+				$categories_list = get_the_category_list( __( ', ', 'jan1' ) );
 				if ( $categories_list && toolbox_categorized_blog() ) {
 			?>
 			<p class="cat-links">
-				<?php printf( __( '<span class="implicit-text">Posted in</span> %1$s', 'toolbox' ), $categories_list ); ?>
+				<?php printf( '<span class="implicit-text">%1s</span> %2$s',  __( 'Posted in', 'jan1'), $categories_list ); ?>
 			</p>
 			<?php } ?>
 			<?php
 				/* translators: used between list items, there is a space after the comma */
-				$tags_list = get_the_tag_list( '', __( ', ', 'toolbox' ) );
+				$tags_list = get_the_tag_list( '', __( ', ', 'jan1' ) );
 				if ( $tags_list ) {
 			?>
 			<p class="tag-links">
-				<?php printf( __( '<span class="implicit-text">Tagged</span> %1$s', 'toolbox' ), $tags_list ); ?>
+				<?php printf( '<span class="implicit-text">%s1</span> %2$s', __( 'Tagged as', 'jan1' ), $tags_list ); ?>
 			</p>
 			<?php } ?>
 			</div>
 		<?php } else { ?>
 			<div class="entry-meta"><?php toolbox_posted_on(); ?></div>
 		<?php } ?>
-		<?php if ( !is_singular() && (comments_open() || ( '0' != get_comments_number() && ! comments_open() )) ) { ?>
-			<p class="comments-link"><?php comments_popup_link( __( '<span class="number">0</span><span class="implicit-text"> Comments</span>', 'toolbox' ), __( '<span class="number">1</span><span class="implicit-text"> Comment</span>', 'toolbox' ), __( '<span class="number">%</span><span class="implicit-text"> Comments</span>', 'toolbox' ) ); ?></p>
-		<?php } ?>
+		<?php if ( !is_singular() && (comments_open() || ( '0' != get_comments_number() && ! comments_open() )) ) {
+			$format = '<span class="number">%s</span><span class="implicit-text"> %s</span>';
+			echo '<p class="comments-link">';
+			comments_popup_link(
+				sprintf($format, '0', __('Comments', 'jan1')),
+				sprintf($format, '1', __('Comment', 'jan1')),
+				sprintf($format, '%', __('Comments', 'jan1'))
+			);
+			echo '</p>';
+		} ?>
 	</footer>
 </article>

@@ -44,9 +44,9 @@ function toolbox_setup() {
 	 * Make theme available for translation
 	 * Translations can be filed in the /languages/ directory
 	 * If you're building a theme based on toolbox, use a find and replace
-	 * to change 'toolbox' to the name of your theme in all the template files
+	 * to change 'jan1' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain( 'toolbox', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'jan1', get_template_directory() . '/languages' );
 
 	$locale = get_locale();
 	$locale_file = get_template_directory() . "/languages/$locale.php";
@@ -61,9 +61,9 @@ function toolbox_setup() {
 	/**
 	 * This theme uses wp_nav_menu() in one location.
 	 */
-	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'toolbox' ),
-	) );
+	//register_nav_menus( array(
+		//'primary' => __( 'Primary Menu', 'jan1' ),
+	//) );
 
 	/**
 	 * Add support for the Aside and Gallery Post Formats
@@ -111,7 +111,7 @@ add_filter( 'wp_page_menu_args', 'toolbox_page_menu_args' );
  */
 function toolbox_widgets_init() {
 	/*register_sidebar( array(
-		'name' => __( 'Sidebar 1', 'toolbox' ),
+		'name' => __( 'Sidebar 1', 'jan1' ),
 		'id' => 'sidebar-1',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => "</aside>",
@@ -139,20 +139,20 @@ function toolbox_content_nav( $nav_id ) {
 	if($has_next || $has_prev) {
 	?>
 	<nav class="pagination <?php echo ($has_next && $has_prev) ? 'both-directions' : ($has_next ? 'only-next' : 'only-previous') ?>" id="<?php echo $nav_id; ?>">
-		<h1 class="assistive-text section-heading"><?php _e( 'Post navigation', 'toolbox' ); ?></h1>
+		<h1 class="assistive-text section-heading"><?php _e( 'Post navigation', 'jan1' ); ?></h1>
 		<div class="menu"><ul><?php
 		if ( is_single() ) {
-			previous_post_link( '<li class="nav-previous">%link</li>', '<span><span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'toolbox' ) . '</span> %title</span>' );
-			next_post_link( '<li class="nav-next">%link</li>', '<span>%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'toolbox' ) . '</span></span>' );
+			previous_post_link( '<li class="nav-previous">%link</li>', '<span>%title</span>' );
+			next_post_link( '<li class="nav-next">%link</li>', '<span>%title</span>' );
 		} else {
 			if($has_prev) {
 				echo '<li class="nav-previous">';
-				next_posts_link( __( '<span><span class="meta-nav">&larr;</span> Older posts</span>', 'toolbox' ) );
+				next_posts_link( sprintf('<span>%s</span>', __( 'Older posts', 'jan1' )) );
 				echo '</li>';
 			}
 			if($has_next) {
 				echo '<li class="nav-next">';
-				previous_posts_link( __( '<span>Newer posts <span class="meta-nav">&rarr;</span></span>', 'toolbox' ) );
+				previous_posts_link( sprintf('<span>%s</span>', __( 'Newer posts', 'jan1' ) ) );
 				echo '</li>';
 			}
 		}
@@ -208,7 +208,7 @@ function toolbox_comment( $comment, $args, $depth ) {
 		case 'trackback' :
 	?>
 	<li class="post pingback">
-		<p><span class="description"><?php _e( 'Trackback:', 'toolbox' ); ?> </span><?php comment_author_link(); ?><?php edit_comment_link( __( '(Edit)', 'toolbox' ), ' ' ); ?></p>
+		<p><span class="description"><?php _e( 'Trackback:', 'jan1' ); ?> </span><?php comment_author_link(); ?><?php edit_comment_link( __( 'Edit', 'jan1' ), ' ' ); ?></p>
 	<?php
 			break;
 		default :
@@ -219,19 +219,19 @@ function toolbox_comment( $comment, $args, $depth ) {
 			<footer>
 				<div class="comment-author vcard">
 					<?php // echo get_avatar( $comment, 40 ); ?>
-					<?php printf( __( '<span class="implicit-text">by </span> %s', 'toolbox' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
+					<?php printf( '<span class="implicit-text">%s</span> <cite class="fn">%s</span>', __( 'by', 'jan1' ), get_comment_author_link() ); ?>
 				</div>
 				<div class="comment-meta commentmetadata">
 					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time pubdate datetime="<?php comment_time( 'c' ); ?>"><?php
-						printf( __( '%s ago', 'toolbox' ), human_time_diff(get_comment_time('U')) );
+						printf( __( '%s ago', 'jan1' ), human_time_diff(get_comment_time('U')) );
 					?></time></a>
 					<?php if ( $comment->comment_approved == '0' ) { ?>
-					<span class="moderation"><?php _e( 'Your comment is awaiting moderation.', 'toolbox' ); ?></span>
+					<span class="moderation"><?php _e( 'Your comment is awaiting moderation.', 'jan1' ); ?></span>
 					<?php } ?>
 				</div>
 				<div class="reply"><?php
 					comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) );
-					edit_comment_link( __( '(Edit)', 'toolbox' ), ' ' );
+					edit_comment_link( __( 'Edit', 'jan1' ), ' ' );
 				?></div>
 			</footer>
 		</article>
@@ -267,37 +267,37 @@ function toolbox_posted_on() {
 	$d = get_the_time('d');
 ?>
 	<p class="date">
-		<span class="implicit-text"><?php echo __('Posted on', 'toolbox') ?></span>
+		<span class="implicit-text"><?php echo __('Posted on', 'jan1') ?></span>
 		<time class="entry-date" datetime="<?php echo get_the_time('c')?>" pubdate>
 			<span class="day-month">
-				<a href="<?php echo get_day_link($y,$m,$d) ?>" title="<?php echo __('Show all posts of this day', 'toolbox') ?>" class="day"><?php the_time('j.') ?></a>
-				<a href="<?php echo get_month_link($y,$m) ?>" title="<?php echo __('Show all posts of this month', 'toolbox') ?>" class="month"><?php the_time('M') ?></a>
+				<a href="<?php echo get_day_link($y,$m,$d) ?>" title="<?php echo __('Show all posts of this day', 'jan1') ?>" class="day"><?php the_time('j.') ?></a>
+				<a href="<?php echo get_month_link($y,$m) ?>" title="<?php echo __('Show all posts of this month', 'jan1') ?>" class="month"><?php the_time('M') ?></a>
 			</span>
-			<a href="<?php echo get_year_link($y) ?>" title="<?php echo __('Show all posts of this year', 'toolbox') ?>" class="year"><?php the_time('Y') ?></a>
+			<a href="<?php echo get_year_link($y) ?>" title="<?php echo __('Show all posts of this year', 'jan1') ?>" class="year"><?php the_time('Y') ?></a>
 		</time>
 	</p>
 	<p class="byline">
-		<span class="implicit-text"><?php echo __('by', 'toolbox') ?></span>
-		<span class="author vcard"><a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ) ?>" title="<?php echo sprintf( __( 'View all posts by %s', 'toolbox' ), get_the_author() ) ?>" rel="author"><?php echo get_the_author() ?></a></span>
+		<span class="implicit-text"><?php echo __('by', 'jan1') ?></span>
+		<span class="author vcard"><a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ) ?>" title="<?php echo sprintf( __( 'View all posts by %s', 'jan1' ), get_the_author() ) ?>" rel="author"><?php echo get_the_author() ?></a></span>
 	</p>
 	<?php if(!toolbox_show_title()) { // no title displayed ?>
 	<p class="permalink">
-		<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'toolbox' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">Permalink</a>
+		<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'jan1' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">Permalink</a>
 	</p>
 	<?php }
-	edit_post_link( __( 'Edit', 'toolbox' ), '<p class="edit-link">', '</p>' );
+	edit_post_link( __( 'Edit', 'jan1' ), '<p class="edit-link">', '</p>' );
 }
 /*
 function toolbox_posted_on() {?>
 	<p class="date"><span>Posted on </span>
 <?php
-	printf( __( '<span class="sep">Posted on </span><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a><span class="byline"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span></span>', 'toolbox' ),
+	printf( __( '<span class="sep">Posted on </span><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a><span class="byline"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span></span>', 'jan1' ),
 		esc_url( get_permalink() ),
 		esc_attr( get_the_time() ),
 		esc_attr( get_the_date( 'c' ) ),
 		esc_html( get_the_date() ),
 		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-		esc_attr( sprintf( __( 'View all posts by %s', 'toolbox' ), get_the_author() ) ),
+		esc_attr( sprintf( __( 'View all posts by %s', 'jan1' ), get_the_author() ) ),
 		esc_html( get_the_author() )
 	);
 }*/
@@ -398,11 +398,11 @@ function toolbox_post_list() {
 
 				<article id="post-0" class="post no-results not-found">
 					<header class="entry-header">
-						<h1 class="entry-title"><?php _e( 'Nothing Found', 'toolbox' ); ?></h1>
+						<h1 class="entry-title"><?php _e( 'Nothing Found', 'jan1' ); ?></h1>
 					</header><!-- .entry-header -->
 
 					<div class="entry-content">
-						<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'toolbox' ); ?></p>
+						<p><?php _e( 'It seems we can\'t find what you\'re looking for. Perhaps searching can help.', 'jan1' ); ?></p>
 						<?php get_search_form(); ?>
 					</div><!-- .entry-content -->
 				</article><!-- #post-0 -->

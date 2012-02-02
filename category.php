@@ -11,7 +11,7 @@ get_header(); ?>
 	<div id="content" role="main">
 		<header class="page-header">
 			<h1 class="page-title"><?php
-				printf( __( 'Category Archives: %s', 'toolbox' ), '<span>' . single_cat_title( '', false ) . '</span>' );
+				printf( __( 'Category Archives: %s', 'jan1' ), '<span>' . single_cat_title( '', false ) . '</span>' );
 			?></h1>
 			<?php
 				$category_description = category_description();

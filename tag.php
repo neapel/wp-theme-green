@@ -11,7 +11,7 @@ get_header(); ?>
 	<div id="content" role="main">
 		<header class="page-header">
 			<h1 class="page-title"><?php
-				printf( __( 'Tag Archives: %s', 'toolbox' ), '<span>' . single_tag_title( '', false ) . '</span>' );
+				printf( __( 'Tag Archives: %s', 'jan1' ), '<span>' . single_tag_title( '', false ) . '</span>' );
 			?></h1>
 			<?php
 				$tag_description = tag_description();
