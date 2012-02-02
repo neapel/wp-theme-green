@@ -3,7 +3,7 @@ Theme Name: Jan1
 Theme URI: http://wordpress.org/extend/themes/toolbox
 Author: pascal
 Author URI: http://automattic.com/
-Description: dings
+Description: Grüün!
 Version: 1.0
 License: GNU General Public License
 License URI: license.txt
@@ -23,10 +23,10 @@ Tags:
 
 
 
-@import url(reset.css);
-@import ~"url(http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900|Bitter:400,400italic|Noticia+Text:400,400italic,700,700italic|Alegreya+SC:400)";
-@sans: 'Maven Pro';
-@serif: 'Noticia Text';
+@import "reset";
+@import ~"url(http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900|Noticia+Text:400,400italic,700,700italic)";
+@sans: 'Maven Pro', 'Trebuchet MS', sans-serif;
+@serif: 'Noticia Text', 'Georgia', serif;
 
 @head1: normal normal 900 4em~"/1" @sans;
 @head2: normal normal 400 2em~"/1" @sans;
@@ -859,6 +859,6 @@ body {
 
 
 
-@media (max-width: 45em) {
-	* { color: red !important}
-}
+//@media (max-width: 45em) {
+//	* { color: red !important}
+//}
