@@ -226,7 +226,8 @@ body {
   background: url(images/logo-blume.png) no-repeat 100% 0;
   width: 140px;
   height: 134px;
-  margin: -57px -97px;
+  margin-top: -52px;
+  margin-right: -97px;
   right: 0;
   top: 0;
 }
