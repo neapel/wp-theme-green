@@ -11,8 +11,11 @@
 	</div>
 
 	<footer id="colophon" role="contentinfo">
-		<p><a href="http://wordpress.org/" rel="generator">WordPress</a></p>
-		<p>Theme basiert auf <a href="http://automattic.com/" rel="designer">Toolbox</a>
+		<?php dynamic_sidebar('footer'); ?>
+		<aside>
+			<p><a href="http://wordpress.org/" rel="generator">WordPress</a></p>
+			<p>Theme basiert auf <a href="http://automattic.com/" rel="designer">Toolbox</a></p>
+		</aside>
 	</footer>
 </div>
 

@@ -164,6 +164,9 @@ input, select {
 a:link, a:active, a:visited {
   color: inherit;
 }
+iframe {
+  max-width: 100%;
+}
 #branding hgroup,
 #access .menu,
 #content > article,
@@ -179,14 +182,13 @@ a:link, a:active, a:visited {
   margin: 0 -2em;
 }
 #branding {
-  position: fixed;
   top: 0;
   width: 100%;
-  height: 20em;
+  height: 13em;
 }
 #page {
   position: absolute;
-  top: 20em;
+  top: 13em;
   left: 0;
   width: 100%;
 }
@@ -239,6 +241,7 @@ body {
   background: url(images/igel.png) no-repeat 100% 100%;
   width: 184px;
   height: 100px;
+  pointer-events: none;
 }
 #branding hgroup h2 {
   font: normal normal 400 2em /1 'Maven Pro', 'Trebuchet MS', sans-serif;
@@ -564,6 +567,20 @@ body {
 .single-author .byline {
   display: none !important;
 }
+.multiple #content .post.with-thumbnail header h1 a::after {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-style: solid;
+  border-color: #444 #fff transparent transparent;
+  border-width: 0.8em 1em 7px 0.2em;
+}
+.multiple #content .post.with-thumbnail header h1 a:hover::after {
+  border-width: 1em 1.2em 7px 0.4em;
+}
 .multiple #content .post.with-thumbnail footer {
   margin: 0;
 }
@@ -595,7 +612,8 @@ body {
   z-index: 1;
   bottom: 0;
   left: 0;
-  padding: 0.5em 2rem;
+  right: 0;
+  padding: 0.5em 2em 0.5em 2rem;
   color: #fff;
   text-shadow: #000 0 1px 4px;
 }

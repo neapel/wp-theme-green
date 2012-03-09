@@ -18,7 +18,6 @@ get_header(); ?>
 
 				<div class="entry-content">
 					<p><?php _e( 'It seems we can\'t find what you\'re looking for. Perhaps searching, or one of the links below, can help.', 'jan1' ); ?></p>
-
 					<?php get_search_form(); ?>
 
 					<?php the_widget( 'WP_Widget_Recent_Posts' ); ?>

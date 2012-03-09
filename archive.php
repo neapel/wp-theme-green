@@ -20,13 +20,13 @@ get_header(); ?>
 				$m = get_the_time('m');
 				$d = get_the_time('d');
 				if ( is_day() ) { ?>
-					<? _e('Daily Archives:') ?>
+					<? _e('Daily Archives:', 'jan1') ?>
 					<span>
 						<?php the_time('j.') ?>
 						<a href="<?php echo get_month_link($y,$m) ?>" title="<?php echo __('Show all posts of this month', 'jan1') ?>"><?php the_time('F') ?></a>
 						<a href="<?php echo get_year_link($y) ?>" title="<?php echo __('Show all posts of this year', 'jan1') ?>"><?php the_time('Y') ?></a>
 				<?php } else if ( is_month() ) { ?>
-					<? _e('Monthly Archives:') ?>
+					<? _e('Monthly Archives:', 'jan1') ?>
 					<span>
 						<?php the_time('F') ?>
 						<a href="<?php echo get_year_link($y) ?>" title="<?php echo __('Show all posts of this year', 'jan1') ?>"><?php the_time('Y') ?></a>

@@ -61,9 +61,9 @@ function toolbox_setup() {
 	/**
 	 * This theme uses wp_nav_menu() in one location.
 	 */
-	//register_nav_menus( array(
-		//'primary' => __( 'Primary Menu', 'jan1' ),
-	//) );
+	register_nav_menus( array(
+		'primary' => __( 'Primary Menu', 'jan1' ),
+	) );
 
 	/**
 	 * Add support for the Aside and Gallery Post Formats
@@ -110,14 +110,15 @@ add_filter( 'wp_page_menu_args', 'toolbox_page_menu_args' );
  * Register widgetized area and update sidebar with default widgets
  */
 function toolbox_widgets_init() {
-	/*register_sidebar( array(
-		'name' => __( 'Sidebar 1', 'jan1' ),
-		'id' => 'sidebar-1',
+	register_sidebar(array(
+		'name' => __('Footer', 'jan1'),
+		'id' => 'footer',
+		'description' => __('Shown at the bottom of every page, for copyright, licenses, etc.', 'jan1'),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => "</aside>",
+		'after_widget' => '</aside>',
 		'before_title' => '<h1 class="widget-title">',
-		'after_title' => '</h1>',
-	) );*/
+		'after_title' => '</h1>'
+	));
 }
 add_action( 'init', 'toolbox_widgets_init' );
 

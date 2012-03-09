@@ -17,7 +17,7 @@ Tags:
 @gray: lighten(desaturate(@blue,100%),10%);
 
 
-@branding-height: 20em;
+@branding-height: 13em;
 
 @big-screen: 900px;
 
@@ -66,6 +66,10 @@ a {
 body {
 }
 
+iframe {
+	max-width: 100%;
+}
+
 // Widths
 .normal-width() {
 	max-width: 40em;
@@ -95,7 +99,7 @@ body {
 }
 
 #branding {
-	position: fixed;
+	//position: fixed;
 	top: 0;
 	width: 100%;
 	height: @branding-height;
@@ -153,6 +157,7 @@ body {
 			background: url(images/igel.png) no-repeat 100% 100%;
 			width: 184px;
 			height: 100px;
+			pointer-events: none;
 		}
 
 		h2 {
@@ -465,6 +470,23 @@ body {
 .single-author .byline { display: none !important; }
 
 .multiple #content .post.with-thumbnail {
+	header h1 a {
+		&::after {
+			content: ''; width: 0; height: 0;
+			position: absolute;
+			right: 0; bottom: 0;
+			border-style: solid;
+			border-color: #444 #fff transparent transparent;
+			// TODO WTF: 7px bottom padding?
+			border-width: 0.8em 1em 7px 0.2em;
+		}
+		&:hover::after {
+			border-width: 1em 1.2em 7px 0.4em;
+		}
+	}
+
+
+
 	footer {
 		margin: 0;
 	}
@@ -493,7 +515,8 @@ body {
 					z-index: 1;
 					bottom: 0;
 					left: 0;
-					padding: 0.5em 2rem;
+					right: 0;
+					padding: 0.5em 2em 0.5em 2rem;
 					color: #fff;
 					text-shadow: #000 0 1px 4px;
 				}

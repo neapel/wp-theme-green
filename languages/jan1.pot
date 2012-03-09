@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jan1 1.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tags/jan1\n"
-"POT-Creation-Date: 2012-02-02 18:29:28+00:00\n"
+"POT-Creation-Date: 2012-02-05 18:28:00+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "All posts by %s"
 msgstr ""
 
-#: content.php:10 functions.php:285
+#: content.php:10 functions.php:286
 msgid "Permalink to %s"
 msgstr ""
 
@@ -49,7 +49,7 @@ msgstr ""
 msgid "Search Results for: %s"
 msgstr ""
 
-#: search.php:24 functions.php:401
+#: search.php:24 functions.php:402
 msgid "Nothing Found"
 msgstr ""
 
@@ -96,11 +96,11 @@ msgid ""
 "the links below, can help."
 msgstr ""
 
-#: 404.php:27
+#: 404.php:26
 msgid "Most Used Categories"
 msgstr ""
 
-#: 404.php:34
+#: 404.php:33
 msgid "Try looking in the monthly archives."
 msgstr ""
 
@@ -112,71 +112,83 @@ msgstr ""
 msgid "Page %s"
 msgstr ""
 
-#: header.php:69
+#: header.php:68
 msgid "Main menu"
 msgstr ""
 
-#: header.php:70
+#: header.php:69
 msgid "Skip to content"
 msgstr ""
 
-#: functions.php:142
+#: functions.php:65
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:114
+msgid "Footer"
+msgstr ""
+
+#: functions.php:116
+msgid "Shown at the bottom of every page, for copyright, licenses, etc."
+msgstr ""
+
+#: functions.php:143
 msgid "Post navigation"
 msgstr ""
 
-#: functions.php:150
+#: functions.php:151
 msgid "Older posts"
 msgstr ""
 
-#: functions.php:155
+#: functions.php:156
 msgid "Newer posts"
 msgstr ""
 
-#: functions.php:181
+#: functions.php:182
 msgid "Pages:"
 msgstr ""
 
-#: functions.php:211
+#: functions.php:212
 msgid "Trackback:"
 msgstr ""
 
-#: functions.php:211 functions.php:234 functions.php:288
+#: functions.php:212 functions.php:235 functions.php:289
 msgid "Edit"
 msgstr ""
 
-#: functions.php:222 functions.php:280
+#: functions.php:223 functions.php:281
 msgid "by"
 msgstr ""
 
-#: functions.php:226
+#: functions.php:227
 msgid "%s ago"
 msgstr ""
 
-#: functions.php:229
+#: functions.php:230
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: functions.php:270
+#: functions.php:271
 msgid "Posted on"
 msgstr ""
 
-#: functions.php:273
+#: functions.php:274
 msgid "Show all posts of this day"
 msgstr ""
 
-#: functions.php:274 archive.php:26
+#: functions.php:275 archive.php:26
 msgid "Show all posts of this month"
 msgstr ""
 
-#: functions.php:276 archive.php:27 archive.php:32
+#: functions.php:277 archive.php:27 archive.php:32
 msgid "Show all posts of this year"
 msgstr ""
 
-#: functions.php:281
+#: functions.php:282
 msgid "View all posts by %s"
 msgstr ""
 
-#: functions.php:405
+#: functions.php:406
 msgid ""
 "It seems we can't find what you're looking for. Perhaps searching can help."
 msgstr ""

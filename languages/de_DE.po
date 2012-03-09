@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jan1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tags/jan1\n"
-"POT-Creation-Date: 2012-02-02 18:29:28+00:00\n"
-"PO-Revision-Date: 2012-02-02 19:51+0100\n"
+"POT-Creation-Date: 2012-02-05 18:28:00+00:00\n"
+"PO-Revision-Date: 2012-02-05 19:28+0100\n"
 "Last-Translator: pascal <pascal@ensieve.org>\n"
 "Language-Team: German <>\n"
 "Language: \n"
@@ -21,7 +21,7 @@ msgid "All posts by %s"
 msgstr "Alle posts von %s"
 
 #: content.php:10
-#: functions.php:285
+#: functions.php:286
 msgid "Permalink to %s"
 msgstr "Permalink auf %s"
 
@@ -54,10 +54,10 @@ msgstr "Kommentar"
 
 #: search.php:13
 msgid "Search Results for: %s"
-msgstr "Suchergebnis für: %s"
+msgstr "Suche nach %s"
 
 #: search.php:24
-#: functions.php:401
+#: functions.php:402
 msgid "Nothing Found"
 msgstr "Nichts gefunden"
 
@@ -99,115 +99,127 @@ msgstr "Hm, ja…"
 msgid "It seems we can't find what you're looking for. Perhaps searching, or one of the links below, can help."
 msgstr "Nicht gefunden. Vielleicht hilft die Suche oder einer der Links unten?"
 
-#: 404.php:27
+#: 404.php:26
 msgid "Most Used Categories"
 msgstr "Häufigste Kategorien"
 
-#: 404.php:34
+#: 404.php:33
 msgid "Try looking in the monthly archives."
 msgstr "Vielleicht im Monatsarchiv?"
 
 #: category.php:14
 msgid "Category Archives: %s"
-msgstr "Kategorien-Archiv: %s"
+msgstr "Alle Posts aus %s"
 
 #: header.php:44
 msgid "Page %s"
 msgstr "Seite %s"
 
-#: header.php:69
+#: header.php:68
 msgid "Main menu"
 msgstr "Hauptmenü"
 
-#: header.php:70
+#: header.php:69
 msgid "Skip to content"
 msgstr "Zum Inhalt"
 
-#: functions.php:142
+#: functions.php:65
+msgid "Primary Menu"
+msgstr "Hauptmenü"
+
+#: functions.php:114
+msgid "Footer"
+msgstr "Fußzeile"
+
+#: functions.php:116
+msgid "Shown at the bottom of every page, for copyright, licenses, etc."
+msgstr "Wird unten auf jeder Seite angezeigt. Für Copyright, Lizenzen, etc."
+
+#: functions.php:143
 msgid "Post navigation"
 msgstr "Postnavigation"
 
-#: functions.php:150
+#: functions.php:151
 msgid "Older posts"
 msgstr "Ältere Posts"
 
-#: functions.php:155
+#: functions.php:156
 msgid "Newer posts"
 msgstr "Neuere Posts"
 
-#: functions.php:181
+#: functions.php:182
 msgid "Pages:"
 msgstr "Seiten:"
 
-#: functions.php:211
+#: functions.php:212
 msgid "Trackback:"
 msgstr "Trackback:"
 
-#: functions.php:211
-#: functions.php:234
-#: functions.php:288
+#: functions.php:212
+#: functions.php:235
+#: functions.php:289
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: functions.php:222
-#: functions.php:280
+#: functions.php:223
+#: functions.php:281
 msgid "by"
 msgstr "von"
 
-#: functions.php:226
+#: functions.php:227
 msgid "%s ago"
 msgstr "vor %s"
 
-#: functions.php:229
+#: functions.php:230
 msgid "Your comment is awaiting moderation."
 msgstr "Dieser Kommentar muss noch freigeschaltet werden."
 
-#: functions.php:270
+#: functions.php:271
 msgid "Posted on"
 msgstr "Gepostet am"
 
-#: functions.php:273
+#: functions.php:274
 msgid "Show all posts of this day"
 msgstr "Alle Posts dieses Tages ansehen"
 
-#: functions.php:274
+#: functions.php:275
 #: archive.php:26
 msgid "Show all posts of this month"
 msgstr "Alle Posts dieses Monats ansehen"
 
-#: functions.php:276
+#: functions.php:277
 #: archive.php:27
 #: archive.php:32
 msgid "Show all posts of this year"
 msgstr "Alle Posts dieses Jahres ansehen"
 
-#: functions.php:281
+#: functions.php:282
 msgid "View all posts by %s"
 msgstr "Alle Posts von %s ansehen"
 
-#: functions.php:405
+#: functions.php:406
 msgid "It seems we can't find what you're looking for. Perhaps searching can help."
 msgstr "Nicht gefunden, vielleicht über die Suche?"
 
 #: tag.php:14
 msgid "Tag Archives: %s"
-msgstr "Tag-Archiv:"
+msgstr "Alle Posts mit %s"
 
 #: archive.php:23
 msgid "Daily Archives:"
-msgstr "Tagesarchiv:"
+msgstr "Archiv:"
 
 #: archive.php:29
 msgid "Monthly Archives:"
-msgstr "Monatsarchiv:"
+msgstr "Archiv:"
 
 #: archive.php:35
 msgid "Yearly Archives: %s"
-msgstr "Jahresarchiv: %s"
+msgstr "Archiv: %s"
 
 #: archive.php:37
 msgid "Archives"
-msgstr "Archive"
+msgstr "Archiv"
 
 #. Theme Name of the plugin/theme
 msgid "Jan1"
@@ -228,9 +240,6 @@ msgstr "pascal"
 #. Author URI of the plugin/theme
 msgid "http://automattic.com/"
 msgstr "http://automattic.com/"
-
-#~ msgid "Primary Menu"
-#~ msgstr "Hauptmenü"
 
 #~ msgid "(Edit)"
 #~ msgstr "(Bearbeiten)"
