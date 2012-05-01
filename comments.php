@@ -54,5 +54,5 @@
 	?>
 		<p class="nocomments"><?php _e( 'Comments are closed.', 'jan1' ); ?></p>
 	<?php } ?>
-	<?php comment_form(); ?>
+	<?php toolbox_comment_form(); ?>
 </div>
