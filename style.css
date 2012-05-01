@@ -106,7 +106,8 @@ section {
 nav ul {
   list-style: none;
 }
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 blockquote:before,
@@ -137,7 +138,8 @@ mark {
 del {
   text-decoration: line-through;
 }
-abbr[title], dfn[title] {
+abbr[title],
+dfn[title] {
   border-bottom: 1px dotted;
   cursor: help;
 }
@@ -153,15 +155,20 @@ hr {
   margin: 1em 0;
   padding: 0;
 }
-input, select {
+input,
+select {
   vertical-align: middle;
 }
-.screen-reader-text, .assistive-text, .implicit-text {
+.screen-reader-text,
+.assistive-text,
+.implicit-text {
   position: absolute;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
 }
-a:link, a:active, a:visited {
+a:link,
+a:active,
+a:visited {
   color: inherit;
 }
 iframe {
@@ -178,7 +185,8 @@ iframe {
 #main {
   margin: 0 2em;
 }
-#access, .pagination {
+#access,
+.pagination {
   margin: 0 -2em;
 }
 #branding {
@@ -244,14 +252,14 @@ body {
   pointer-events: none;
 }
 #branding hgroup h2 {
-  font: normal normal 400 2em /1 'Maven Pro', 'Trebuchet MS', sans-serif;
+  font: normal normal 900 1em /1 'Maven Pro', 'Trebuchet MS', sans-serif;
   text-transform: uppercase;
   color: #bdce20;
   position: absolute;
   white-space: nowrap;
   top: 50%;
   line-height: 1;
-  margin-top: 1em;
+  margin-top: 2em;
   width: 100%;
   text-align: center;
 }
@@ -271,10 +279,12 @@ body {
   padding: 0 1em;
   text-decoration: none;
 }
-#access .menu a:focus, #access .menu a:hover {
+#access .menu a:focus,
+#access .menu a:hover {
   text-decoration: underline;
 }
-#access .menu a:focus, #access .menu a:hover {
+#access .menu a:focus,
+#access .menu a:hover {
   background-color: #a9b81d;
 }
 #access .menu li.current_page_item > a {
@@ -289,7 +299,8 @@ body {
 #access .menu .children {
   display: none;
 }
-#access .menu .current_page_item .children, #access .menu .current_page_ancestor .children {
+#access .menu .current_page_item .children,
+#access .menu .current_page_ancestor .children {
   display: inline-block;
 }
 .page-header {
@@ -309,7 +320,8 @@ body {
 .page-header h1 a {
   text-decoration: none;
 }
-.page-header h1 a:focus, .page-header h1 a:hover {
+.page-header h1 a:focus,
+.page-header h1 a:hover {
   text-decoration: underline;
 }
 .pagination {
@@ -330,12 +342,15 @@ body {
   height: 2.5em;
   max-width: 100%;
 }
-.pagination .menu a:link, .pagination .menu a:active, .pagination .menu a:visited {
+.pagination .menu a:link,
+.pagination .menu a:active,
+.pagination .menu a:visited {
   display: inline-block;
   text-decoration: none;
   padding: 0 1em;
 }
-.pagination .menu a::before, .pagination .menu a::after {
+.pagination .menu a::before,
+.pagination .menu a::after {
   content: '';
   height: 0;
   width: 0;
@@ -371,13 +386,16 @@ body {
   border-color: #bdce20;
   border-right-color: rgba(189, 206, 32, 0);
 }
-.pagination .menu .nav-previous a:focus, .pagination .menu .nav-previous a:hover {
+.pagination .menu .nav-previous a:focus,
+.pagination .menu .nav-previous a:hover {
   background-color: #a9b81d;
 }
-.pagination .menu .nav-previous a:focus::before, .pagination .menu .nav-previous a:hover::before {
+.pagination .menu .nav-previous a:focus::before,
+.pagination .menu .nav-previous a:hover::before {
   border-right-color: #a9b81d;
 }
-.pagination .menu .nav-previous a:focus::after, .pagination .menu .nav-previous a:hover::after {
+.pagination .menu .nav-previous a:focus::after,
+.pagination .menu .nav-previous a:hover::after {
   border-color: #a9b81d;
   border-right-color: rgba(169, 184, 29, 0);
 }
@@ -397,13 +415,16 @@ body {
   left: 100%;
   border-left-color: #bdce20;
 }
-.pagination .menu .nav-next a:focus, .pagination .menu .nav-next a:hover {
+.pagination .menu .nav-next a:focus,
+.pagination .menu .nav-next a:hover {
   background-color: #a9b81d;
 }
-.pagination .menu .nav-next a:focus::after, .pagination .menu .nav-next a:hover::after {
+.pagination .menu .nav-next a:focus::after,
+.pagination .menu .nav-next a:hover::after {
   border-left-color: #a9b81d;
 }
-.pagination .menu .nav-next a:focus::before, .pagination .menu .nav-next a:hover::before {
+.pagination .menu .nav-next a:focus::before,
+.pagination .menu .nav-next a:hover::before {
   border-color: #a9b81d;
   border-left-color: rgba(169, 184, 29, 0);
 }
@@ -419,7 +440,8 @@ body {
   border-radius: 0 0 1em 1em;
   color: inherit;
 }
-#content .more-link:hover, #content .more-link:focus {
+#content .more-link:hover,
+#content .more-link:focus {
   text-decoration: underline;
   color: #000 !important;
   background-color: #e7d60a;
@@ -437,7 +459,8 @@ body {
   border-bottom: 5px solid #f8ec5b;
   text-align: center;
 }
-#content .post-pagination .menu p, #content .post-pagination .menu li {
+#content .post-pagination .menu p,
+#content .post-pagination .menu li {
   font: 500 90% / 2.5 'Maven Pro', 'Trebuchet MS', sans-serif;
 }
 #content .post-pagination .menu p {
@@ -446,13 +469,15 @@ body {
 #content .post-pagination .menu * {
   display: inline-block;
 }
-#content .post-pagination .menu a, #content .post-pagination .menu span {
+#content .post-pagination .menu a,
+#content .post-pagination .menu span {
   padding: 0 1em;
 }
 #content .post-pagination .menu a {
   text-decoration: none;
 }
-#content .post-pagination .menu a:hover, #content .post-pagination .menu a:focus {
+#content .post-pagination .menu a:hover,
+#content .post-pagination .menu a:focus {
   background-color: #e7d60a;
   text-decoration: underline;
 }
@@ -462,10 +487,12 @@ body {
 #page {
   background: #fff;
 }
-#content footer, #content .pre-footer {
+#content footer,
+#content .pre-footer {
   clear: both;
 }
-#content .post header a, #content .post footer a {
+#content .post header a,
+#content .post footer a {
   text-decoration: none;
 }
 #content .post header a:focus,
@@ -474,23 +501,28 @@ body {
 #content .post footer a:hover {
   text-decoration: underline;
 }
-#content .post header h1, #content .post footer h1 {
+#content .post header h1,
+#content .post footer h1 {
   margin: 1em 0 0 0;
   font: normal normal 700 2.5em /1.1 'Maven Pro', 'Trebuchet MS', sans-serif;
 }
-#content .post header h1 a, #content .post footer h1 a {
+#content .post header h1 a,
+#content .post footer h1 a {
   display: block;
 }
-#content .post header .entry-meta, #content .post footer .entry-meta {
+#content .post header .entry-meta,
+#content .post footer .entry-meta {
   font: 500 90% / 2.5 'Maven Pro', 'Trebuchet MS', sans-serif;
   color: #757575;
 }
-#content .post header .entry-meta .byline .implicit-text, #content .post footer .entry-meta .byline .implicit-text {
+#content .post header .entry-meta .byline .implicit-text,
+#content .post footer .entry-meta .byline .implicit-text {
   position: static;
   clip: auto;
   font-style: italic;
 }
-#content .post header .entry-meta p, #content .post footer .entry-meta p {
+#content .post header .entry-meta p,
+#content .post footer .entry-meta p {
   display: inline-block;
   margin-right: 1em;
 }
@@ -503,7 +535,8 @@ body {
   display: block;
   text-decoration: none;
 }
-#content .post.format-link .entry-content a:first-child:focus, #content .post.format-link .entry-content a:first-child:hover {
+#content .post.format-link .entry-content a:first-child:focus,
+#content .post.format-link .entry-content a:first-child:hover {
   text-decoration: underline;
 }
 #content .page {
@@ -545,7 +578,8 @@ body {
   border-top-color: #000000;
   border-right-width: 0.25em;
 }
-#content .comments-link a:focus, #content .comments-link a:hover {
+#content .comments-link a:focus,
+#content .comments-link a:hover {
   text-decoration: underline;
 }
 .single #content .post footer {
@@ -561,7 +595,8 @@ body {
 .single #content .taxonomy a {
   text-decoration: none;
 }
-.single #content .taxonomy a:focus, .single #content .taxonomy a:hover {
+.single #content .taxonomy a:focus,
+.single #content .taxonomy a:hover {
   text-decoration: underline;
 }
 .single-author .byline {
@@ -617,7 +652,8 @@ body {
   color: #fff;
   text-shadow: #000 0 1px 4px;
 }
-#content .post.with-thumbnail header h1 a:hover span, #content .post.with-thumbnail header h1 a:focus span {
+#content .post.with-thumbnail header h1 a:hover span,
+#content .post.with-thumbnail header h1 a:focus span {
   text-decoration: underline;
 }
 #content .post.with-thumbnail header .entry-meta {
@@ -640,11 +676,13 @@ body {
 #content .post.with-thumbnail .comments-link a::after {
   border-top-color: #fff;
 }
-#content .post.with-thumbnail .comments-link a:hover, #content .post.with-thumbnail .comments-link a:focus {
+#content .post.with-thumbnail .comments-link a:hover,
+#content .post.with-thumbnail .comments-link a:focus {
   background-color: #fff;
   color: #000;
 }
-#content .post.with-thumbnail .comments-link a:hover::after, #content .post.with-thumbnail .comments-link a:focus::after {
+#content .post.with-thumbnail .comments-link a:hover::after,
+#content .post.with-thumbnail .comments-link a:focus::after {
   border-top-color: #fff;
 }
 #comments {
@@ -654,7 +692,8 @@ body {
 #comments > h2 {
   display: none;
 }
-#comments ol, #comments ul {
+#comments ol,
+#comments ul {
   list-style: none outside;
 }
 #comments .pingback {
@@ -679,7 +718,8 @@ body {
 #comments .comment footer a {
   text-decoration: none;
 }
-#comments .comment footer a:focus, #comments .comment footer a:hover {
+#comments .comment footer a:focus,
+#comments .comment footer a:hover {
   text-decoration: underline;
 }
 #comments .comment footer .comment-author {
@@ -779,7 +819,8 @@ body {
   color: #444;
   padding-left: 1ex;
 }
-#comments #respond p input[type=text], #comments #respond p textarea {
+#comments #respond p input[type=text],
+#comments #respond p textarea {
   display: block;
   width: 100%;
   min-width: 100%;
@@ -1265,13 +1306,16 @@ body {
   font-size: 90%;
   text-align: center;
 }
-.comment-content a:focus, .comment-content a:hover {
+.comment-content a:focus,
+.comment-content a:hover {
   color: #000000;
 }
-.comment-content ol, .comment-content ul {
+.comment-content ol,
+.comment-content ul {
   margin-left: 1em !important;
 }
-.comment-content ol li::before, .comment-content ul li::before {
+.comment-content ol li::before,
+.comment-content ul li::before {
   color: #000000 !important;
 }
 .comment-content > blockquote {
