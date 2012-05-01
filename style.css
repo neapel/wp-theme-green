@@ -550,6 +550,9 @@ body {
   display: none;
 }
 #content .comments-link {
+  position: absolute;
+  top: 1em;
+  right: 0;
   float: right;
   color: #fff;
   font: 500 90% / 2.5 'Maven Pro', 'Trebuchet MS', sans-serif;
@@ -602,88 +605,60 @@ body {
 .single-author .byline {
   display: none !important;
 }
-.multiple #content .post.with-thumbnail header h1 a::after {
-  content: '';
-  width: 0;
-  height: 0;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  border-style: solid;
-  border-color: #444 #fff transparent transparent;
-  border-width: 0.8em 1em 7px 0.2em;
-}
-.multiple #content .post.with-thumbnail header h1 a:hover::after {
-  border-width: 1em 1.2em 7px 0.4em;
-}
-.multiple #content .post.with-thumbnail footer {
-  margin: 0;
-}
-#content .post.with-thumbnail {
-  margin-top: 2em;
+.multiple #content .post {
+  margin: 1em auto;
   position: relative;
 }
-#content .post.with-thumbnail header hgroup {
-  margin: 0 -2em;
+.multiple #content .post.with-thumbnail h1 a {
+  min-height: 5em;
 }
-#content .post.with-thumbnail header h1 {
-  margin-top: 0;
-}
-#content .post.with-thumbnail header h1 a {
-  display: block;
-  position: relative;
-}
-#content .post.with-thumbnail header h1 a img {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  z-index: 0;
-}
-#content .post.with-thumbnail header h1 a span {
-  display: block;
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0.5em 2em 0.5em 2rem;
+.multiple #content .post.with-thumbnail h1 a span {
   color: #fff;
-  text-shadow: #000 0 1px 4px;
+  text-shadow: #000 0 1px 4px, #000 0 0 15px;
 }
-#content .post.with-thumbnail header h1 a:hover span,
-#content .post.with-thumbnail header h1 a:focus span {
-  text-decoration: underline;
-}
-#content .post.with-thumbnail header .entry-meta {
-  position: absolute;
-  top: 0em;
+.multiple #content .post.with-thumbnail header .entry-meta {
   color: #fff;
-  text-shadow: #000 0 1px 2px;
-  padding-top: 0.3em;
+  text-shadow: #000 0 1px 2px, #000 0 0 10px;
 }
-#content .post.with-thumbnail .comments-link {
-  position: absolute;
-  top: 1em;
-  right: 0;
-}
-#content .post.with-thumbnail .comments-link a {
+.multiple #content .post.with-thumbnail .comments-link a {
   box-shadow: #000 0 1px 4px;
   background-color: #fff;
   color: #000;
 }
-#content .post.with-thumbnail .comments-link a::after {
+.multiple #content .post.with-thumbnail .comments-link a::after {
   border-top-color: #fff;
 }
-#content .post.with-thumbnail .comments-link a:hover,
-#content .post.with-thumbnail .comments-link a:focus {
-  background-color: #fff;
-  color: #000;
+.multiple #content .post footer {
+  margin: 0;
 }
-#content .post.with-thumbnail .comments-link a:hover::after,
-#content .post.with-thumbnail .comments-link a:focus::after {
-  border-top-color: #fff;
+.multiple #content .post header {
+  background-color: #e0e0e0;
+  background-size: cover;
+  background-position: 50% 50%;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px, rgba(0, 0, 0, 0.25) 0 5px 10px;
+  margin: 0 -2em;
+  padding: 0 2em;
+}
+.multiple #content .post header h1 {
+  margin: 0;
+}
+.multiple #content .post header h1 a {
+  display: block;
+  padding: 1em 0 0.5em;
+}
+.multiple #content .post header h1 a span {
+  display: block;
+  z-index: 1;
+  padding: 0 2em 0.5em -1;
+}
+.multiple #content .post header h1 a:hover span,
+.multiple #content .post header h1 a:focus span {
+  text-decoration: underline;
+}
+.multiple #content .post header .entry-meta {
+  position: absolute;
+  top: 0em;
+  padding-top: 0.3em;
 }
 #comments {
   margin-top: 2em;
@@ -836,7 +811,8 @@ body {
 }
 #colophon {
   color: #757575;
-  margin: 4em 0;
+  margin: 4em auto;
+  max-width: 40em;
   text-align: center;
   font: normal normal 400 0.9em /1 'Maven Pro', 'Trebuchet MS', sans-serif;
 }
@@ -850,6 +826,15 @@ body {
 .comment.byuser .comment-content {
   clear: both;
   font: normal normal normal 1em /1.5 'Noticia Text', 'Georgia', serif;
+  /* Nobody uses different headings anyway.
+	h1 { font-size: 2.5em }
+	h2 { font-size: 2em }
+	h3 { font-size: 1.5em }
+	h4 { font-size: 1.2em }
+	h5 { font-size: 1em }
+	h6 { font-size: 0.8em }
+	*/
+
 }
 .entry-content a:focus,
 .tag-archive-meta a:focus,
@@ -901,50 +886,8 @@ body {
 .comment-content h6,
 .comment.byuser .comment-content h6 {
   font: normal normal 400 1em /1.1 'Maven Pro', 'Trebuchet MS', sans-serif;
-  text-transform: uppercase;
   margin: 1em 0 0.5em;
-}
-.entry-content h1,
-.tag-archive-meta h1,
-.category-archive-meta h1,
-.comment-content h1,
-.comment.byuser .comment-content h1 {
-  font-size: 2.5em;
-}
-.entry-content h2,
-.tag-archive-meta h2,
-.category-archive-meta h2,
-.comment-content h2,
-.comment.byuser .comment-content h2 {
-  font-size: 2em;
-}
-.entry-content h3,
-.tag-archive-meta h3,
-.category-archive-meta h3,
-.comment-content h3,
-.comment.byuser .comment-content h3 {
   font-size: 1.5em;
-}
-.entry-content h4,
-.tag-archive-meta h4,
-.category-archive-meta h4,
-.comment-content h4,
-.comment.byuser .comment-content h4 {
-  font-size: 1.2em;
-}
-.entry-content h5,
-.tag-archive-meta h5,
-.category-archive-meta h5,
-.comment-content h5,
-.comment.byuser .comment-content h5 {
-  font-size: 1em;
-}
-.entry-content h6,
-.tag-archive-meta h6,
-.category-archive-meta h6,
-.comment-content h6,
-.comment.byuser .comment-content h6 {
-  font-size: 0.8em;
 }
 .entry-content > blockquote,
 .tag-archive-meta > blockquote,

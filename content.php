@@ -3,18 +3,19 @@
  * @package Toolbox
  */
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(has_post_thumbnail() ? 'with-thumbnail' : 'without-thumnail'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(has_post_thumbnail() ? 'with-thumbnail' : 'without-thumbnail'); ?>>
 	<?php if(toolbox_show_title()) { ?>
-	<header class="entry-header">
+	<header class="entry-header"<?php if(!is_singular() && has_post_thumbnail())
+			echo ' style="background-image: url(' . wp_get_attachment_url(get_post_thumbnail_id()) . ')"'; ?>>
 		<hgroup>
-			<h1 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'jan1' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><span><?php the_title(); ?></span><?php if(has_post_thumbnail()) the_post_thumbnail('full'); ?></a></h1>
+			<h1 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'jan1' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><span><?php the_title(); ?></span></a></h1>
 		</hgroup>
 		<div class="entry-meta"><?php toolbox_posted_on(); ?></div>
 	</header>
 	<?php } ?>
 	<?php if ( is_search() ) { // Only display Excerpts for Search ?>
 		<div class="entry-summary hyphenate"><?php the_excerpt(); ?></div>
-	<?php } else if(!has_post_thumbnail() || is_singular()){ ?>
+	<?php } else if(/*!has_post_thumbnail() ||*/ is_singular()){ ?>
 		<div class="entry-content hyphenate"><?php
 			the_content( __( 'Continue reading', 'jan1' ) );
 		?></div>

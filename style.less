@@ -419,6 +419,9 @@ body {
 	.taxonomy { display: none }
 
 	.comments-link {
+		position: absolute;
+		top: 1em;
+		right: 0;
 		@bg: #000; //mix(@blue, #fff, 50%);
 		//@active: @blue;
 		float: right;
@@ -469,56 +472,58 @@ body {
 
 .single-author .byline { display: none !important; }
 
-.multiple #content .post.with-thumbnail {
-	header h1 a {
-		&::after {
-			content: ''; width: 0; height: 0;
-			position: absolute;
-			right: 0; bottom: 0;
-			border-style: solid;
-			border-color: #444 #fff transparent transparent;
-			// TODO WTF: 7px bottom padding?
-			border-width: 0.8em 1em 7px 0.2em;
+
+.multiple #content .post {
+
+	&.with-thumbnail {
+		h1 a {
+			min-height: 5em;
+			span {
+				color: #fff;
+				text-shadow: #000 0 1px 4px, #000 0 0 15px;
+			}
 		}
-		&:hover::after {
-			border-width: 1em 1.2em 7px 0.4em;
+		header .entry-meta {
+			color: #fff;
+			text-shadow: #000 0 1px 2px, #000 0 0 10px;
+		}
+		.comments-link a {
+			box-shadow: #000 0 1px 4px;
+			background-color: #fff;
+			color: #000;
+			&::after {
+				border-top-color: #fff;
+			}
 		}
 	}
-
 
 
 	footer {
 		margin: 0;
 	}
-}
-#content .post.with-thumbnail {
-	margin-top: 2em;
+
+	margin: 1em auto;
 	position: relative;
+
 	header {
-		hgroup { .full-width(); }
+		background-color: #e0e0e0;
+		background-size: cover;
+		background-position: 50% 50%;
+
+		box-shadow: rgba(0,0,0,0.3) 0 1px 3px,rgba(0,0,0,0.25) 0 5px 10px;
+
+		.full-width();
+		padding: 0 2em;
+
 		h1 {
-			margin-top: 0;
+			margin: 0;
 			a {
 				display: block;
-				position: relative;
-				img {
-					position: relative;
-					top: 0;
-					left: 0;
-					width: 100%;
-					height: auto;
-					z-index: 0;
-				}
+				padding: 1em 0 0.5em;
 				span {
 					display: block;
-					position: absolute;
 					z-index: 1;
-					bottom: 0;
-					left: 0;
-					right: 0;
-					padding: 0.5em 2em 0.5em 2rem;
-					color: #fff;
-					text-shadow: #000 0 1px 4px;
+					padding: 0 2em 0.5em -1;
 				}
 				&:hover, &:focus { span { text-decoration: underline } }
 			}
@@ -526,31 +531,10 @@ body {
 		.entry-meta {
 			position: absolute;
 			top: 0em;
-			color: #fff;
-			text-shadow: #000 0 1px 2px;
 			padding-top: 0.3em;
 		}
 	}
-	.comments-link {
-		position: absolute;
-		top: 1em;
-		right: 0;
-		a {
-			box-shadow: #000 0 1px 4px;
-			background-color: #fff;
-			color: #000;
-			&::after {
-				border-top-color: #fff;
-			}
-			&:hover, &:focus {
-				background-color: #fff;
-				color: #000;
-				&::after {
-					border-top-color: #fff;
-				}
-			}
-		}
-	}
+
 }
 
 
@@ -704,7 +688,8 @@ body {
 // Footer
 #colophon {
 	color: @gray;
-	margin: 4em 0;
+	margin: 4em auto;
+	max-width: 40em;
 	text-align: center;
 	font: @colophonfont;
 	p {
@@ -757,15 +742,18 @@ body {
 	// headers
 	h1, h2, h3, h4, h5, h6 {
 		font: @head4;
-		text-transform: uppercase;
+		//text-transform: uppercase;
 		margin: 1em 0 0.5em;
+		font-size: 1.5em;
 	}
+	/* Nobody uses different headings anyway.
 	h1 { font-size: 2.5em }
 	h2 { font-size: 2em }
 	h3 { font-size: 1.5em }
 	h4 { font-size: 1.2em }
 	h5 { font-size: 1em }
 	h6 { font-size: 0.8em }
+	*/
 	// quotes
 	> blockquote { .blockquote(mix(@sulphur, #fff, 50%), #fff) }
 	// lists
