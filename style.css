@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900|Noticia+Text:400,400italic,700,700italic);
+@import url(http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900,900italic|Noticia+Text:400,400italic,700,700italic);
 /*
 Theme Name: Jan1
 Theme URI: http://wordpress.org/extend/themes/toolbox
@@ -10,6 +10,12 @@ License: GNU General Public License
 License URI: license.txt
 Tags: 
 */
+@font-face {
+  font-family: 'greensymbols';
+  font-style: normal;
+  font-weight: normal;
+  src: url(images/greensymbols.woff) format('woff');
+}
 html,
 body,
 div,
@@ -174,7 +180,6 @@ a:visited {
 iframe {
   max-width: 100%;
 }
-#branding hgroup,
 #access .menu,
 #content > article,
 .pagination .menu,
@@ -189,79 +194,63 @@ iframe {
 .pagination {
   margin: 0 -2em;
 }
-#branding {
-  top: 0;
-  width: 100%;
-  height: 13em;
-}
-#page {
-  position: absolute;
-  top: 13em;
-  left: 0;
-  width: 100%;
-}
 body {
-  background: #64a12d url(images/sonnenblume-tiled.png) repeat fixed;
+  background: #64a12d url(images/tiled-1x.png) repeat fixed;
+  background-size: 80px 45px;
 }
-#branding {
-  clip: rect(0%, 100%, 100%, 0%);
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  body {
+    background-image: url(images/tiled-2x.png);
+  }
 }
 #branding hgroup {
-  position: relative;
-  height: 100%;
+  text-align: center;
   color: #fff;
+  white-space: nowrap;
 }
 #branding hgroup a {
   text-decoration: none;
 }
 #branding hgroup h1 {
-  font: normal normal 900 4em /1 'Maven Pro', 'Trebuchet MS', sans-serif;
-  font-style: italic;
+  font: italic normal 900 4em /1 'Maven Pro', 'Trebuchet MS', sans-serif;
   letter-spacing: -0.1ex;
   text-transform: uppercase;
-  white-space: nowrap;
-  position: absolute;
-  bottom: 50%;
   line-height: 1;
-  margin-bottom: -0.5em;
-  width: 100%;
-  text-align: center;
+  margin-top: 1em;
 }
-#branding hgroup h1 a {
+#branding hgroup h1::after {
+  content: '\e000';
+  font: normal normal 200% /10px 'greensymbols';
+  font-style: normal;
+  color: #f5e415;
+  margin-right: -0.75em;
+  margin-left: -0.25em;
+}
+#branding hgroup #gj-logo {
+  letter-spacing: 0;
+  font: normal normal 1.25em /10px 'greensymbols';
+  display: inline;
+  margin-left: -1.5em;
   position: relative;
+  left: -0.25em;
 }
-#branding hgroup h1 a::after {
-  content: '';
-  position: absolute;
-  background: url(images/logo-blume.png) no-repeat 100% 0;
-  width: 140px;
-  height: 134px;
-  margin-top: -52px;
-  margin-right: -97px;
-  right: 0;
-  top: 0;
+#branding hgroup #gj-logo::before {
+  line-height: 1;
+  content: '\e001';
+  color: #fff;
 }
-#branding hgroup::after {
-  content: '';
-  position: absolute;
-  bottom: 10px;
-  left: -60px;
-  background: url(images/igel.png) no-repeat 100% 100%;
-  width: 184px;
-  height: 100px;
-  pointer-events: none;
+#branding hgroup #gj-logo::after {
+  line-height: 1;
+  margin-left: -1.5em;
+  content: '\e002';
+  color: #000;
 }
 #branding hgroup h2 {
   font: normal normal 900 1em /1 'Maven Pro', 'Trebuchet MS', sans-serif;
   text-transform: uppercase;
   color: #bdce20;
-  position: absolute;
-  white-space: nowrap;
-  top: 50%;
-  line-height: 1;
-  margin-top: 2em;
-  width: 100%;
-  text-align: center;
+  margin-bottom: 2em;
+  margin-top: -0.5em;
 }
 #access {
   background-color: #bdce20;
@@ -827,6 +816,14 @@ body {
 }
 #colophon p {
   margin: 1em 0;
+}
+#page {
+  padding-bottom: 4em;
+}
+.cc-by-nc-sa::before {
+  font: normal normal 100% 'greensymbols';
+  content: '\e00a\e00b\e007\e003';
+  display: block;
 }
 .entry-content,
 .tag-archive-meta,

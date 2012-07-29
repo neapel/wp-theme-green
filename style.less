@@ -17,19 +17,21 @@ Tags:
 @gray: lighten(desaturate(@blue,100%),10%);
 
 
-@branding-height: 13em;
-
 @big-screen: 900px;
 
+@font-face {
+  font-family: 'greensymbols';
+  font-style: normal;
+  font-weight: normal;
+  src: url(images/greensymbols.woff) format('woff');
+}
 
 
 @import "reset";
-@import ~"url(http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900|Noticia+Text:400,400italic,700,700italic)";
+@import ~"url(http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900,900italic|Noticia+Text:400,400italic,700,700italic)";
 @sans: 'Maven Pro', 'Trebuchet MS', sans-serif;
 @serif: 'Noticia Text', 'Georgia', serif;
 
-@head1: normal normal 900 4em~"/1" @sans;
-@head2: normal normal 900 1em~"/1" @sans;
 @menufont-lineheight: 2.5;
 @menufont: 500 90%~"/"@menufont-lineheight @sans;
 //@head3: normal normal 2.5em~"/0.9" 'Alegreya SC';
@@ -75,7 +77,6 @@ iframe {
 	max-width: 40em;
 	margin: 0 auto;
 }
-#branding hgroup,
 #access .menu,
 #content > article,
 .pagination .menu,
@@ -98,78 +99,68 @@ iframe {
 	.full-width();
 }
 
-#branding {
-	//position: fixed;
-	top: 0;
-	width: 100%;
-	height: @branding-height;
-}
-
-#page {
-	position: absolute;
-	top: @branding-height;
-	left: 0;
-	width: 100%;
-}
 
 // Header
 body {
-	background: @green url(images/sonnenblume-tiled.png) repeat fixed;
+	background: @green url(images/tiled-1x.png) repeat fixed;
+	background-size: 80px 45px;
 }
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+	body { background-image: url(images/tiled-2x.png); }
+}
+
 #branding {
-	clip: rect(0%, 100%, 100%, 0%);
 	hgroup {
-		position: relative;
-		height: 100%;
+		text-align: center;
 		color: #fff;
+		white-space: nowrap;
 		a { text-decoration: none }
 		h1 {
-			font: @head1;
-			font-style: italic;
+			font: italic normal 900 4em~"/1" @sans;
 			letter-spacing: -0.1ex;
 			text-transform: uppercase;
-			white-space: nowrap;
-			position: absolute;
-			bottom: 50%;
 			line-height: 1;
-			margin-bottom: -0.5em;
-			width: 100%; text-align: center;
-			a { position: relative; }
-			a::after {
-				content: '';
-				position: absolute;
-				background: url(images/logo-blume.png) no-repeat 100% 0;
-				@w: 140px;
-				@h: 134px;
-				width: @w;
-				height: @h;
-				margin-top: (-0.5 * @h + 15px);
-				margin-right: (-0.5 * @w - 27px);
-				right: 0;
-				top: 0;
+			margin-top: 1em;
+
+			// Blume
+			&::after {
+				content: '\e000';
+				font: normal normal 200%~'/10px' 'greensymbols';
+				font-style: normal;
+				color: @yellow;
+				margin-right: -0.75em;
+				margin-left: -0.25em;
 			}
 		}
-		&::after {
-			content: '';
-			position: absolute;
-			bottom: 10px;
-			left: -60px;
-			background: url(images/igel.png) no-repeat 100% 100%;
-			width: 184px;
-			height: 100px;
-			pointer-events: none;
+
+		// Igel
+		@igelsize: 1.25em;
+		#gj-logo {
+			letter-spacing: 0;
+			font: normal normal @igelsize~'/10px' 'greensymbols';
+			display: inline;
+			margin-left: -1.5em;
+			position: relative;
+			left: -0.25em;
+			&::before {
+				line-height: 1;
+				content: '\e001';
+				color: #fff;
+			}
+			&::after {
+				line-height: 1;
+				margin-left: -1.5em;
+				content: '\e002';
+				color: #000;
+			}
 		}
 
 		h2 {
-			font: @head2;
+			font: normal normal 900 1em~"/1" @sans;
 			text-transform: uppercase;
 			color: @sulphur;
-			position: absolute;
-			white-space: nowrap;
-			top: 50%;
-			line-height: 1;
-			margin-top: 2em;
-			width: 100%; text-align: center;
+			margin-bottom: 2em;
+			margin-top: -0.5em;
 		}
 	}
 }
@@ -701,6 +692,15 @@ body {
 	p {
 		margin: 1em 0;
 	}
+}
+#page {
+	padding-bottom: 4em;
+}
+
+.cc-by-nc-sa::before {
+	font: normal normal 100% 'greensymbols';
+	content: '\e00a\e00b\e007\e003';
+	display: block;
 }
 
 
