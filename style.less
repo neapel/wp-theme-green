@@ -26,6 +26,17 @@ Tags:
   src: url(images/greensymbols.woff) format('woff');
 }
 
+.icon {
+	font: normal normal normal 100% 'greensymbols';
+	text-rendering: optimizeLegibility;	
+	-webkit-font-feature-settings: "liga", "dlig";
+	-moz-font-feature-settings: "liga=1, dlig=1";
+	-moz-font-feature-settings: "liga", "dlig";
+	-ms-font-feature-settings: "liga", "dlig";
+	-o-font-feature-settings: "liga", "dlig";
+	font-feature-settings: "liga", "dlig";
+}
+
 
 @import "reset";
 @import ~"url(http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900,900italic|Noticia+Text:400,400italic,700,700italic)";
@@ -66,6 +77,7 @@ a {
 }
 
 body {
+	text-rendering: optimizeLegibility;
 }
 
 iframe {
@@ -692,16 +704,12 @@ body {
 	p {
 		margin: 1em 0;
 	}
+
 }
 #page {
 	padding-bottom: 4em;
 }
 
-.cc-by-nc-sa::before {
-	font: normal normal 100% 'greensymbols';
-	content: '\e00a\e00b\e007\e003';
-	display: block;
-}
 
 
 

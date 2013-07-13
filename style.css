@@ -16,6 +16,16 @@ Tags:
   font-weight: normal;
   src: url(images/greensymbols.woff) format('woff');
 }
+.icon {
+  font: normal normal normal 100% 'greensymbols';
+  text-rendering: optimizeLegibility;
+  -webkit-font-feature-settings: "liga", "dlig";
+  -moz-font-feature-settings: "liga=1, dlig=1";
+  -moz-font-feature-settings: "liga", "dlig";
+  -ms-font-feature-settings: "liga", "dlig";
+  -o-font-feature-settings: "liga", "dlig";
+  font-feature-settings: "liga", "dlig";
+}
 html,
 body,
 div,
@@ -176,6 +186,9 @@ a:link,
 a:active,
 a:visited {
   color: inherit;
+}
+body {
+  text-rendering: optimizeLegibility;
 }
 iframe {
   max-width: 100%;
@@ -819,11 +832,6 @@ body {
 }
 #page {
   padding-bottom: 4em;
-}
-.cc-by-nc-sa::before {
-  font: normal normal 100% 'greensymbols';
-  content: '\e00a\e00b\e007\e003';
-  display: block;
 }
 .entry-content,
 .tag-archive-meta,
